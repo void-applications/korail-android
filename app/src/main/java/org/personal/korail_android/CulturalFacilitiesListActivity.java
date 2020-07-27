@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,17 +29,24 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
     String result;
     Handler handler;
+    TextView resultTV;
+    EditText searchET;
+    ImageButton searchIB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cultural_facilities_list);
 
-        handler=new Handler();
-        recyclerView=findViewById(R.id.facilitiesRecyclerview);
-        facilitiesItemArrayList=new ArrayList<>();
-        facilitiesAdapter=new FacilitiesAdapter(facilitiesItemArrayList,this);
-        gridLayoutManager=new GridLayoutManager(getApplicationContext(),2);
+        recyclerView = findViewById(R.id.facilitiesRecyclerview);
+        resultTV = findViewById(R.id.resultCountTV);
+        searchET = findViewById(R.id.searchET);
+        searchIB = findViewById(R.id.searchIB);
+
+        handler = new Handler();
+        facilitiesItemArrayList = new ArrayList<>();
+        facilitiesAdapter = new FacilitiesAdapter(facilitiesItemArrayList, this);
+        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(facilitiesAdapter);
 
@@ -44,19 +55,37 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
             public void run() {
 
                 OkHttp okHttpThread = new OkHttp();
-                result=okHttpThread.getData("http://52.79.146.35/cultural_facilities");
+                result = okHttpThread.getData("http://52.79.146.35/cultural_facilities");
                 displayFacilities(result);
             }
         }).start();
 
+        searchIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Log.e("hi", "http://52.79.146.35/cultural_facilities/?station_name=" + searchET.getText());
+                        OkHttp okHttpThread = new OkHttp();
+                        result = okHttpThread.getData("http://52.79.146.35/cultural_facilities/?station_name=" + searchET.getText());
+                        displayFacilities(result);
+                    }
+                }).start();
+            }
+        });
+
     }
 
-    public void displayFacilities(final String result){
+    public void displayFacilities(final String result) {
 
         handler.post(new Runnable() {
             @Override
             public void run() {
                 JSONObject jsonObject = null;
+                facilitiesItemArrayList.clear();
+                facilitiesAdapter.notifyDataSetChanged();
                 try {
                     jsonObject = new JSONObject(result);
                     //그중에서 data를 키값으로 갖는 jsonarray를 가져옴
@@ -65,13 +94,13 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Log.i("hi", String.valueOf(jsonArray.length()));
                         JSONObject searchItem = jsonArray.getJSONObject(i);
-                        String id=searchItem.getString("id");
-                        String lineName=searchItem.getString("line_name");
-                        String stationName=searchItem.getString("station_name");
-                        String floor=searchItem.getString("floor");
-                        String location=searchItem.getString("location");
-                        String equipment=searchItem.getString("equipment");
-                        FacilitiesItem facilitiesItem=new FacilitiesItem(id,lineName,stationName,floor,location,equipment);
+                        String id = searchItem.getString("id");
+                        String lineName = searchItem.getString("line_name");
+                        String stationName = searchItem.getString("station_name");
+                        String floor = searchItem.getString("floor");
+                        String location = searchItem.getString("location");
+                        String equipment = searchItem.getString("equipment");
+                        FacilitiesItem facilitiesItem = new FacilitiesItem(id, lineName, stationName, floor, location, equipment);
                         facilitiesItemArrayList.add(facilitiesItem);
                         facilitiesAdapter.notifyDataSetChanged();
                     }
