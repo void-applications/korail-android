@@ -35,9 +35,27 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.equipmentTV.setText(facilitiesItemArrayList.get(position).getEquipment());
-        holder.locationTV.setText(facilitiesItemArrayList.get(position).getFloor()+"  "+facilitiesItemArrayList.get(position).getLocation());
-        holder.stationNameTV.setText(facilitiesItemArrayList.get(position).getLineName()+"  "+facilitiesItemArrayList.get(position).getStationName());
+
+        //장비가 없을 때
+        if(facilitiesItemArrayList.get(position).getEquipment().equals("null")){
+            holder.equipmentTV.setText("");
+        }
+        //장비가 있을 때
+        else{
+            holder.equipmentTV.setText("장비 "+facilitiesItemArrayList.get(position).getEquipment());
+        }
+
+        //상세 위치가 없을 때
+        if(facilitiesItemArrayList.get(position).getLocation().equals("null")){
+
+            holder.locationTV.setText(facilitiesItemArrayList.get(position).getFloor());
+        }
+        //상세 위치가 있을 때
+        else{
+            holder.locationTV.setText(facilitiesItemArrayList.get(position).getFloor()+"  "+facilitiesItemArrayList.get(position).getLocation());
+        }
+
+        holder.stationNameTV.setText(facilitiesItemArrayList.get(position).getLineName()+"  "+facilitiesItemArrayList.get(position).getStationName()+"역");
     }
 
     @Override
