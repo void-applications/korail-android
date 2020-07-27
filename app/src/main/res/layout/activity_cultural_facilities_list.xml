@@ -24,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
+        android:privateImeOptions="defaultInputmode=korean"
         android:id="@+id/searchET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
