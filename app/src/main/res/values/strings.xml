@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">korail-android</string>
+    <string name="firebaseMessagingToken">firebaseMessagingToken</string>
 </resources>
