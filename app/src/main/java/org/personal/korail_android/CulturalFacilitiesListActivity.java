@@ -56,7 +56,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
 
                 OkHttp okHttpThread = new OkHttp();
                 result = okHttpThread.getData("http://52.79.146.35/cultural_facilities");
-                displayFacilities(result);
+                displayFacilities(result,"");
             }
         }).start();
 
@@ -67,10 +67,10 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Log.e("hi", "http://52.79.146.35/cultural_facilities/?station_name=" + searchET.getText());
                         OkHttp okHttpThread = new OkHttp();
                         result = okHttpThread.getData("http://52.79.146.35/cultural_facilities/?station_name=" + searchET.getText());
-                        displayFacilities(result);
+                        String searchStation= String.valueOf(searchET.getText());
+                        displayFacilities(result,searchStation);
                     }
                 }).start();
             }
@@ -78,7 +78,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
 
     }
 
-    public void displayFacilities(final String result) {
+    public void displayFacilities(final String result, final String searchStation) {
 
         handler.post(new Runnable() {
             @Override
@@ -90,9 +90,12 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
                     jsonObject = new JSONObject(result);
                     //그중에서 data를 키값으로 갖는 jsonarray를 가져옴
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
+                    if(!searchStation.equals("")){
+                        resultTV.setText(searchStation+" 검색결과 총 "+jsonArray.length()+"건");
+                        resultTV.setVisibility(View.VISIBLE);
+                    }
                     //데이터를 jsonarray길이만큼 반복하여 name값을 가져옴
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Log.i("hi", String.valueOf(jsonArray.length()));
                         JSONObject searchItem = jsonArray.getJSONObject(i);
                         String id = searchItem.getString("id");
                         String lineName = searchItem.getString("line_name");
