@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.personal.korail_android.R
-import org.personal.korail_android.data.ChatData
+import org.personal.korail_android.item.ChatData
 
 class ChatAdapter(val context: Context, private val myTokenTableId: Int, private val messageList: ArrayList<ChatData>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
