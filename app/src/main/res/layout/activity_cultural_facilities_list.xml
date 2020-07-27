@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CulturalFacilitiesListActivity">
+
+    <TextView
+        android:id="@+id/HeaderTV"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main"
+        android:gravity="center|start"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="예술인들의 문화시설 리뷰"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/searchET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        android:hint="역을 검색해주세요 ! "
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/searchIB"
+        app:layout_constraintTop_toBottomOf="@id/HeaderTV" />
+
+    <ImageButton
+        android:id="@+id/searchIB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/search"
+        app:layout_constraintTop_toTopOf="@id/searchET"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/searchET" />
+
+    <TextView
+        android:id="@+id/resultCountTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="oo 역 검색결과 총 o건"
+        app:layout_constraintTop_toBottomOf="@id/searchET"
+        android:padding="15dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/facilitiesRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        tools:listitem="@layout/item_cultural_facilities"
+        app:layout_constraintTop_toBottomOf="@id/resultCountTV" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
