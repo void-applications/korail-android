@@ -14,8 +14,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = javaClass.name
 
     companion object {
-        const val ACTION_SEND_COUPLE_CHAT = "INTENT_ACTION_SEND_COUPLE_CHAT"
-        const val ACTION_SEND_OPEN_CHAT = "INTENT_ACTION_SEND_OPEN_CHAT"
+        const val ACTION_RECEIVE_CHAT = "INTENT_ACTION_RECEIVE_CHAT"
     }
 
     /* 새로운 토큰을 파이어베이스로부터 받으면 shared preference 에 저장 -> 서버에 userColumnID 와 함께 저장하기 위해 대기
@@ -41,12 +40,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun setLocalBroadcast(senderId: Int, message: String?) {
-        val toHackertonMain = Intent().apply {
-            action = "FCM_MESSAGE"
+        val toChat = Intent().apply {
+            action = ACTION_RECEIVE_CHAT
             putExtra("senderId", senderId)
             putExtra("message", message)
         }
-        LocalBroadcastManager.getInstance(this).sendBroadcast(toHackertonMain)
+        LocalBroadcastManager.getInstance(this).sendBroadcast(toChat)
     }
 }
 

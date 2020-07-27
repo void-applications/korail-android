@@ -1,18 +1,23 @@
 package org.personal.korail_android
 
-import android.content.ComponentName
-import android.content.Intent
-import android.content.ServiceConnection
+import android.content.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import android.view.View
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_chatting.*
 import org.json.JSONObject
 import org.personal.korail_android.`interface`.HTTPConnectionListener
+import org.personal.korail_android.adapter.ChatAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_SIMPLE_POST_METHOD
+import org.personal.korail_android.data.ChatData
 import org.personal.korail_android.service.HTTPConnectionService
+import org.personal.korail_android.service.MyFirebaseMessagingService.Companion.ACTION_RECEIVE_CHAT
 import org.personal.korail_android.utils.SharedPreferenceHelper
 import java.lang.Integer.parseInt
 
@@ -21,19 +26,41 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
     private val TAG = javaClass.name
     private val serverPage = "korail-chat"
 
+    // --- http 통신관련 변수 모음 ---
     private lateinit var httpConnectionService: HTTPConnectionService
     private val UPLOAD_FIREBASE_TOKEN = 1
     private val SEND_MESSAGE = 2
+
+    // --- FCM 으로 받은 채팅 메시지를 액티비티에서 수신하는 로컬 리시버 ---
+    private lateinit var broadcastReceiver: BroadcastReceiver
+    private val intentFilter by lazy { IntentFilter().apply { addAction(ACTION_RECEIVE_CHAT) } }
+
+    // 채팅 리사이클러뷰
+    private val tokenTableId by lazy { SharedPreferenceHelper.getInt(this, getText(R.string.tokenId).toString()) }
+    private val chattingList by lazy { ArrayList<ChatData>() }
+    private val chatAdapter: ChatAdapter by lazy { ChatAdapter(this, tokenTableId, chattingList) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chatting)
         setListener()
+        defineReceiver()
+        buildRecyclerView()
     }
 
     override fun onStart() {
         super.onStart()
         startBoundService()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
     }
 
     override fun onStop() {
@@ -43,6 +70,32 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
 
     private fun setListener() {
         sendBtn.setOnClickListener(this)
+    }
+
+    private fun buildRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+
+        chattingBoxRV.setHasFixedSize(true)
+        chattingBoxRV.layoutManager = layoutManager
+        chattingBoxRV.adapter = chatAdapter
+    }
+
+    private fun defineReceiver() {
+
+        broadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                Log.i(TAG, "working?")
+                when (intent?.action) {
+                    ACTION_RECEIVE_CHAT -> {
+                        val senderId = intent.getIntExtra("senderId", 0)
+                        val message = intent.getStringExtra("message")
+                        val chatData = ChatData(senderId, message, "3030")
+                        chattingList.add(chatData)
+                        chatAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        }
     }
 
     // 현재 액티비티와 HTTPConnectionService(Bound Service)를 연결하는 메소드
@@ -59,14 +112,18 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
     }
 
     private fun sendMessage() {
-        val tokenTableId = SharedPreferenceHelper.getInt(this, getText(R.string.tokenId).toString())
-        val postData = JSONObject()
-        postData.put("what", "sendMessage")
-        postData.put("senderId", tokenTableId)
-        postData.put("message", "메시지 테스트")
+        // 빈칸이 아닐 때만 메시지를 보냄
+        val chatInput = chattingInputED.text.toString()
 
-        httpConnectionService.serverPostRequest(serverPage, postData.toString(), REQUEST_SIMPLE_POST_METHOD, SEND_MESSAGE)
+        if (chatInput.trim() != "") {
+            val postData = JSONObject()
+            postData.put("what", "sendMessage")
+            postData.put("senderId", tokenTableId)
+            postData.put("message", chatInput)
 
+            httpConnectionService.serverPostRequest(serverPage, postData.toString(), REQUEST_SIMPLE_POST_METHOD, SEND_MESSAGE)
+            chattingInputED.text = null
+        }
     }
 
     // Memo : BoundService 의 IBinder 객체를 받아와 현재 액티비티에서 서비스의 메소드를 사용하기 위한 클래스
