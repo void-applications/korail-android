@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lostAndFoundSearch">
+
+
+    <EditText
+        android:id="@+id/searchStation"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="76dp"
+        android:hint="찾으시는 역의 이름을 검색해주세요"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="76dp"
+        android:src="@drawable/search"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/searchStation"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stationListRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        tools:listitem="@layout/item_lost_and_found"
+        app:layout_constraintTop_toBottomOf="@id/searchStation" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
