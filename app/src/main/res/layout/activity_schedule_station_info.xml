@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scheduleStationInfo">
+    <!--    Header-->
+    <TextView
+        android:id="@+id/headerTV"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main"
+        android:gravity="center|start"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="역 정보 자세히 보기"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="200dp"/>
+
+    <TextView
+        android:id="@+id/firstInfoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:padding="10dp"
+        android:text="화장실"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/firstInfoDetailTV"
+        app:layout_constraintTop_toBottomOf="@+id/headerTV" />
+
+    <TextView
+        android:id="@+id/firstInfoDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="84dp"
+        android:padding="10dp"
+        android:text="1번출구 오른쪽"
+
+        app:layout_constraintLeft_toRightOf="@+id/firstInfoTV"
+        app:layout_constraintTop_toBottomOf="@+id/headerTV" />
+
+    <TextView
+        android:id="@+id/secondInfoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="84dp"
+        android:padding="10dp"
+        android:text="에스컬레이터"
+
+        app:layout_constraintLeft_toRightOf="@+id/firstInfoDetailTV"
+        app:layout_constraintTop_toBottomOf="@+id/headerTV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:padding="10dp"
+        android:text="7-1출구 앞"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintLeft_toRightOf="@+id/secondInfoTV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerTV"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:id="@+id/thirdInfoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/firstInfoTV"
+        android:text="수유실 "
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+        android:padding="10dp"
+
+        />
+
+    <TextView
+        android:id="@+id/thirdInfoDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:padding="10dp"
+        android:text="1층 계단 옆"
+        app:layout_constraintLeft_toRightOf="@+id/thirdInfoTV"
+        app:layout_constraintTop_toBottomOf="@+id/firstInfoTV" />
+
+    <TextView
+        android:id="@+id/fourthInfoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="4dp"
+        android:padding="10dp"
+        android:text="물품 보관함"
+        app:layout_constraintLeft_toRightOf="@+id/thirdInfoDetailTV"
+        app:layout_constraintTop_toBottomOf="@+id/secondInfoTV" />
+
+    <TextView
+        android:id="@+id/fourthInfoDetailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:padding="10dp"
+        android:text="1층 계단 옆"
+        app:layout_constraintLeft_toRightOf="@+id/fourthInfoTV"
+        app:layout_constraintTop_toBottomOf="@+id/secondInfoTV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fifthInfoTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="엘리베이터"
+        app:layout_constraintTop_toBottomOf="@+id/thirdInfoTV"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fifthInfoDetailTV"
+        app:layout_constraintLeft_toRightOf="@+id/fifthInfoTV"
+        android:text="3번 출구 계단 옆"
+        app:layout_constraintTop_toBottomOf="@+id/thirdInfoDetailTV"
+        android:padding="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sixthInfoTV"
+        android:text="위생용품"
+        app:layout_constraintLeft_toRightOf="@+id/fifthInfoDetailTV"
+        app:layout_constraintTop_toBottomOf="@+id/fourthInfoTV"
+        android:padding="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sixthInfoDetailTV"
+        android:text="계단 옆 "
+        app:layout_constraintTop_toBottomOf="@+id/fourthInfoDetailTV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/sixthInfoTV"
+        android:padding="10dp"
+        />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/closeIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/closeTV"
+        android:src="@drawable/close"/>
+    <TextView
+        android:id="@+id/closeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닫기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="20dp"
+        android:gravity="center"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
