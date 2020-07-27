@@ -5,7 +5,7 @@ import android.content.Context
 object SharedPreferenceHelper {
 
     // 패키지 이름으로 key 설정
-    private const val STORAGE_KEY = "org.personal.coupleapp"
+    private const val STORAGE_KEY = "org.personal.korail"
 
     fun setString(context: Context, key: String?, value: String?) {
         val editor = context.getSharedPreferences(STORAGE_KEY, Context.MODE_PRIVATE).edit()
