@@ -34,5 +34,5 @@
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/titleTV"
         app:layout_constraintLeft_toLeftOf="parent" />
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
