@@ -23,7 +23,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ScrollView
         android:id="@+id/scrollSV"
         android:layout_width="0dp"
@@ -50,10 +49,10 @@
                 app:headerRowBackgroundColor="#ffefefef"
                 app:headerRowPadding="12dp"
                 app:hourHeight="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:noOfVisibleDays="3"
                 app:textSize="12sp"
                 app:todayBackgroundColor="#1848adff" />

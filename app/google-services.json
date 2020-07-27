@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "734009402735",
+    "firebase_url": "https://korail-hackerton.firebaseio.com",
+    "project_id": "korail-hackerton",
+    "storage_bucket": "korail-hackerton.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734009402735:android:3e2f5530798091a56e349a",
+        "android_client_info": {
+          "package_name": "org.personal.korail_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734009402735-fs4p7cahndollos4cl08fbunchh9q2ao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCAcmmOtkc0KRBeUcG9OjOSK-2_jxqNkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734009402735-fs4p7cahndollos4cl08fbunchh9q2ao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
