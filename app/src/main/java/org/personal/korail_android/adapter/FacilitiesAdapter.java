@@ -20,6 +20,12 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
     ArrayList<FacilitiesItem> facilitiesItemArrayList;
     Activity activity;
 
+    FacilitiesAdapter.OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public FacilitiesAdapter(ArrayList<FacilitiesItem> facilitiesItemArrayList, Activity activity) {
         this.facilitiesItemArrayList = facilitiesItemArrayList;
         this.activity = activity;
@@ -34,7 +40,7 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         //장비가 없을 때
         if(facilitiesItemArrayList.get(position).getEquipment().equals("null")){
@@ -56,11 +62,23 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
         }
 
         holder.stationNameTV.setText(facilitiesItemArrayList.get(position).getLineName()+"  "+facilitiesItemArrayList.get(position).getStationName()+"역");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onItemClickListener!=null){
+                    onItemClickListener.OnItemClick(view,position);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return facilitiesItemArrayList.size();
+    }
+
+    public interface OnItemClickListener {
+        void OnItemClick(View view,int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
