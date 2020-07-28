@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:padding="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginBottom="30dp"
+    app:cardCornerRadius="10dp">
 
-    <ImageView
-        android:id="@+id/facilityIV"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:background="@drawable/ic_launcher_background"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <TextView
-        android:id="@+id/stationNameTV"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="역이름"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:padding="3dp"
-        app:layout_constraintTop_toBottomOf="@id/facilityIV"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/locationTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="위치"
-        android:textSize="17sp"
-        android:textColor="@color/black"
-        android:padding="3dp"
-        app:layout_constraintTop_toBottomOf="@id/stationNameTV"
-        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <TextView
-        android:id="@+id/equipmentTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="장비"
-        android:padding="3dp"
-        android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/locationTV"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="120dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/facilityIV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:scaleType="centerInside"
+                android:src="@drawable/pink_item" />
+
+            <TextView
+                android:id="@+id/stationNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="역이름"
+                android:layout_alignParentBottom="true"
+                android:background="#aaffffff"
+                android:padding="6dp"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:padding="3dp"
+            android:textColor="@color/black"
+            tools:text="위치" />
+
+        <TextView
+            android:id="@+id/equipmentTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:padding="3dp"
+            tools:text="설명"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
