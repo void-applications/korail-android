@@ -42,8 +42,8 @@ public class lostAndFoundSearch extends AppCompatActivity {
                         String stationName = stationNameET.getText().toString();
                         OkHttp okHttpThread = new OkHttp();
                         result=okHttpThread.getData("http://52.79.146.35/lost_found_center/?station_name="+stationName);
-                        centerName = result.split("+/+")[0];
-                        centerNumber = result.split("+/+")[1];
+                        centerName = result.split("#")[0];
+                        centerNumber = result.split("#")[1];
                     }
                 }).start();
 
