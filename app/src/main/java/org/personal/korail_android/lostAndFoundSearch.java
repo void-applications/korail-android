@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +20,9 @@ public class lostAndFoundSearch extends AppCompatActivity {
     String result;
     String centerName;
     String centerNumber;
+    String TAG = "유실물 전화 액티비티";
+
+    Intent searchIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +39,16 @@ public class lostAndFoundSearch extends AppCompatActivity {
         searchIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String stationName = stationNameET.getText().toString();
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String stationName = stationNameET.getText().toString();
-                        OkHttp okHttpThread = new OkHttp();
-                        result=okHttpThread.getData("http://52.79.146.35/lost_found_center/?station_name="+stationName);
-                        centerName = result.split("#")[0];
-                        centerNumber = result.split("#")[1];
-                    }
-                }).start();
-
-                Intent searchIntent = new Intent(getApplicationContext(), lostAndFoundCallNLocation.class);
-                searchIntent.putExtra("centerName", centerName);
-                searchIntent.putExtra("centerNumber", centerNumber);
-                  startActivity(searchIntent);
+                searchIntent = new Intent(getApplicationContext(), lostAndFoundCallNLocation.class);
+                searchIntent.putExtra("stationName", stationName);
+                Log.d(TAG, "인텐트로 보내는 결과값 확인 : "+ stationName);
+                startActivity(searchIntent);
 
             }
         });
-
     }
-
-
 }
+
+
