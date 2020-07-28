@@ -63,6 +63,16 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
             }
         }).start();
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                OkHttp okHttpThread = new OkHttp();
+                result = okHttpThread.getData("http://52.79.146.35/facility_review/?id=" + id);
+                displayFacilityReview(result);
+            }
+        }).start();
+
 
 
     }
@@ -93,6 +103,36 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                         phoneNumberTV.setText(phoneNumber);
                         hoursOfUseTV.setText(hoursOfUse);
                         rentalCostTV.setText(rentalCost);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void displayFacilityReview(final String result) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(result);
+                    //그중에서 data를 키값으로 갖는 jsonarray를 가져옴
+                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject searchItem = jsonArray.getJSONObject(i);
+                        String id = searchItem.getString("id");
+                        String review= searchItem.getString("review");
+                        String date = searchItem.getString("date");
+                        String star = searchItem.getString("star");
+
+                        FacilityReviewItem facilityReviewItem=new FacilityReviewItem(id,review,date,Integer.parseInt(star));
+                        facilityReviewItemArrayList.add(facilityReviewItem);
+                        facilityReviewAdapter.notifyDataSetChanged();
+                    }
 
 
                 } catch (JSONException e) {
