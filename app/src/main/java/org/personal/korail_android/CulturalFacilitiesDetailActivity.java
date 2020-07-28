@@ -91,6 +91,7 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                 final String json=jsonObject.toString();
 
                 postReview(json);
+                reviewET.setText("");
             }
         });
 
@@ -117,12 +118,34 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                     String hoursOfUse = searchItem.getString("hours_of_use");
                     String rentalCost = searchItem.getString("rental_cost");
 
-                    locationTV.setText(floor + " " + location);
+                    locationTV.setText("위치 : "+floor + " " + location);
                     stationNameTV.setText(lineName + " " + stationName + "역");
-                    equipmentTV.setText(equipment);
-                    phoneNumberTV.setText(phoneNumber);
-                    hoursOfUseTV.setText(hoursOfUse);
-                    rentalCostTV.setText(rentalCost);
+                    if(!equipment.equals("null")){
+                        equipmentTV.setText("장비 : "+equipment);
+                    }
+                    else{
+                        equipmentTV.setVisibility(View.GONE);
+                    }
+                    if(!phoneNumber.equals("null")){
+                        phoneNumberTV.setText("전화번호 : "+phoneNumber);
+                    }
+                    else{
+                        phoneNumberTV.setVisibility(View.GONE);
+
+
+                    }
+                    if(!hoursOfUse.equals("null")) {
+                        hoursOfUseTV.setText("이용시간 : " + hoursOfUse);
+                    }
+                    else{
+                        hoursOfUseTV.setVisibility(View.GONE);
+                    }
+                    if(!rentalCost.equals("null")){
+                        rentalCostTV.setText("대여비용 : "+rentalCost+" 원");
+                    }
+                    else{
+                        rentalCostTV.setVisibility(View.GONE);
+                    }
 
 
                 } catch (JSONException e) {
@@ -137,6 +160,8 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
             @Override
             public void run() {
                 JSONObject jsonObject = null;
+                facilityReviewItemArrayList.clear();
+                facilityReviewAdapter.notifyDataSetChanged();
                 try {
                     jsonObject = new JSONObject(result);
                     //그중에서 data를 키값으로 갖는 jsonarray를 가져옴

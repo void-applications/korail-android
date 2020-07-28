@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:background="#f5f5f5"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -24,42 +25,60 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:privateImeOptions="defaultInputmode=korean"
-        android:id="@+id/searchET"
+        android:id="@+id/searchStationET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        android:hint="역을 검색해주세요 ! "
+        android:layout_margin="20dp"
+        android:background="@drawable/shape_search_box"
+        android:backgroundTint="@color/searchBox"
+        android:hint="역 검색"
+        android:paddingStart="50dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="50dp"
+        android:paddingBottom="10dp"
+        android:lines="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/searchIB"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/HeaderTV" />
 
     <ImageButton
-        android:id="@+id/searchIB"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/search"
-        app:layout_constraintTop_toTopOf="@id/searchET"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/searchET" />
+        android:id="@+id/searchIconIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparency"
+        android:src="@drawable/ic_baseline_search_24"
+        app:layout_constraintBottom_toBottomOf="@id/searchStationET"
+        app:layout_constraintLeft_toLeftOf="@+id/searchStationET"
+        app:layout_constraintTop_toTopOf="@id/searchStationET" />
+
+    <ImageButton
+        android:id="@+id/clearSearchInputIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparency"
+        android:src="@drawable/ic_baseline_clear_24"
+        app:layout_constraintBottom_toBottomOf="@id/searchStationET"
+        app:layout_constraintRight_toRightOf="@id/searchStationET"
+        app:layout_constraintTop_toTopOf="@id/searchStationET" />
 
     <TextView
         android:id="@+id/resultCountTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="oo 역 검색결과 총 o건"
-        app:layout_constraintTop_toBottomOf="@id/searchET"
+        app:layout_constraintTop_toBottomOf="@id/searchStationET"
         android:visibility="gone"
         android:padding="15dp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#f5f5f5"
         android:id="@+id/facilitiesRecyclerview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:padding="10dp"
         tools:listitem="@layout/item_cultural_facilities"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/resultCountTV" />
 
 
