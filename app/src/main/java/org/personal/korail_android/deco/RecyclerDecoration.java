@@ -19,7 +19,7 @@ public class RecyclerDecoration extends RecyclerView.ItemDecoration {
         super.getItemOffsets(outRect, view, parent, state);
         if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1){
             outRect.bottom = divHeight;
-            outRect.left=divHeight-20;
+            outRect.left=divHeight-30;
         }
 
     }
