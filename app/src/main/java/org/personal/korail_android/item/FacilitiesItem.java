@@ -1,5 +1,7 @@
 package org.personal.korail_android.item;
 
+import android.graphics.drawable.Drawable;
+
 public class FacilitiesItem {
 
     String id;
@@ -8,14 +10,16 @@ public class FacilitiesItem {
     String floor;
     String location;
     String equipment;
+    int drawable;
 
-    public FacilitiesItem(String id, String lineName, String stationName, String floor, String location, String equipment) {
+    public FacilitiesItem(String id, String lineName, String stationName, String floor, String location, String equipment, int drawable) {
         this.id = id;
         this.lineName = lineName;
         this.stationName = stationName;
         this.floor = floor;
         this.location = location;
         this.equipment = equipment;
+        this.drawable=drawable;
     }
 
     public String getEquipment() {
@@ -64,5 +68,13 @@ public class FacilitiesItem {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getDrawable() {
+        return drawable;
+    }
+
+    public void setDrawable(int drawable) {
+        this.drawable = drawable;
     }
 }
