@@ -3,9 +3,7 @@ package org.personal.korail_android
 import android.content.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -15,7 +13,7 @@ import org.json.JSONObject
 import org.personal.korail_android.`interface`.HTTPConnectionListener
 import org.personal.korail_android.adapter.ChatAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_SIMPLE_POST_METHOD
-import org.personal.korail_android.data.ChatData
+import org.personal.korail_android.item.ChatData
 import org.personal.korail_android.service.HTTPConnectionService
 import org.personal.korail_android.service.MyFirebaseMessagingService.Companion.ACTION_RECEIVE_CHAT
 import org.personal.korail_android.utils.SharedPreferenceHelper
