@@ -22,4 +22,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/reviewTV" />
 
+    <TextView
+        android:id="@+id/dateTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="날짜"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviewRB"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

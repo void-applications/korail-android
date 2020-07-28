@@ -18,7 +18,7 @@
 
 
     <TextView
-        android:id="@+id/location"
+        android:id="@+id/locationTV"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:gravity="center"
@@ -31,7 +31,7 @@
         android:layout_height="60dp"
         android:src="@drawable/location"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/location"
+        app:layout_constraintLeft_toRightOf="@+id/locationTV"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -42,7 +42,7 @@
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="유실물 센터 연락처"
-        app:layout_constraintTop_toBottomOf="@+id/location"
+        app:layout_constraintTop_toBottomOf="@+id/locationTV"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
