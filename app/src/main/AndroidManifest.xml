@@ -3,8 +3,8 @@
     package="org.personal.korail_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.DIAL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
         <activity android:name=".scheduleStaionSearch" />
         <activity android:name=".scheduleStationInfo" />
         <activity android:name=".lostAndFoundSearch" />
