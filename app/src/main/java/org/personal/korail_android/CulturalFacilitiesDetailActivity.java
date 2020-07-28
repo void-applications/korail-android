@@ -8,6 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -21,13 +25,17 @@ import java.util.ArrayList;
 
 public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
 
-    String result;
+    String result,id;
     Handler handler;
+    RatingBar reviewRB;
+    EditText reviewET;
     TextView stationNameTV, locationTV, equipmentTV, rentalCostTV, hoursOfUseTV, phoneNumberTV;
     ArrayList<FacilityReviewItem> facilityReviewItemArrayList;
     FacilityReviewAdapter facilityReviewAdapter;
     LinearLayoutManager linearLayoutManager;
     RecyclerView recyclerView;
+    Button writeButton;
+    OkHttp okHttpThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,39 +48,51 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
         rentalCostTV = findViewById(R.id.rentalCostTV);
         hoursOfUseTV = findViewById(R.id.hoursOfUseTV);
         phoneNumberTV = findViewById(R.id.phoneNumberTV);
-        recyclerView=findViewById(R.id.facilitiesReviewRecyclerview);
+        recyclerView = findViewById(R.id.facilitiesReviewRecyclerview);
+        writeButton = findViewById(R.id.writeButton);
+        reviewET=findViewById(R.id.reviewET);
+        reviewRB=findViewById(R.id.reviewRB);
 
-        facilityReviewItemArrayList=new ArrayList<>();
-        facilityReviewAdapter=new FacilityReviewAdapter(facilityReviewItemArrayList,this);
-        linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+        facilityReviewItemArrayList = new ArrayList<>();
+        facilityReviewAdapter = new FacilityReviewAdapter(facilityReviewItemArrayList, this);
+        linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(facilityReviewAdapter);
 
-        handler=new Handler();
+        handler = new Handler();
+        okHttpThread = new OkHttp();
 
         Intent intent = getIntent();
-        final String id = intent.getStringExtra("id");
+        id = intent.getStringExtra("id");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                OkHttp okHttpThread = new OkHttp();
                 result = okHttpThread.getData("http://52.79.146.35/cultural_facility_detail/?id=" + id);
                 displayFacility(result);
             }
         }).start();
 
-        new Thread(new Runnable() {
+        getReview();
+
+
+        writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View view) {
+                JSONObject jsonObject=new JSONObject();
+                try {
+                    jsonObject.accumulate("id",id);
+                    jsonObject.accumulate("review",reviewET.getText());
+                    jsonObject.accumulate("star",reviewRB.getNumStars());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                final String json=jsonObject.toString();
 
-                OkHttp okHttpThread = new OkHttp();
-                result = okHttpThread.getData("http://52.79.146.35/facility_review/?id=" + id);
-                displayFacilityReview(result);
+                postReview(json);
             }
-        }).start();
-
+        });
 
 
     }
@@ -87,22 +107,22 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                     //그중에서 data를 키값으로 갖는 jsonarray를 가져옴
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                        JSONObject searchItem = jsonArray.getJSONObject(0);
-                        String lineName = searchItem.getString("line_name");
-                        String stationName = searchItem.getString("station_name");
-                        String floor = searchItem.getString("floor");
-                        String location = searchItem.getString("location");
-                        String equipment = searchItem.getString("equipment");
-                        String phoneNumber=searchItem.getString("phone_number");
-                        String hoursOfUse=searchItem.getString("hours_of_use");
-                        String rentalCost=searchItem.getString("rental_cost");
+                    JSONObject searchItem = jsonArray.getJSONObject(0);
+                    String lineName = searchItem.getString("line_name");
+                    String stationName = searchItem.getString("station_name");
+                    String floor = searchItem.getString("floor");
+                    String location = searchItem.getString("location");
+                    String equipment = searchItem.getString("equipment");
+                    String phoneNumber = searchItem.getString("phone_number");
+                    String hoursOfUse = searchItem.getString("hours_of_use");
+                    String rentalCost = searchItem.getString("rental_cost");
 
-                        locationTV.setText(floor+" "+location);
-                        stationNameTV.setText(lineName+" "+stationName+"역");
-                        equipmentTV.setText(equipment);
-                        phoneNumberTV.setText(phoneNumber);
-                        hoursOfUseTV.setText(hoursOfUse);
-                        rentalCostTV.setText(rentalCost);
+                    locationTV.setText(floor + " " + location);
+                    stationNameTV.setText(lineName + " " + stationName + "역");
+                    equipmentTV.setText(equipment);
+                    phoneNumberTV.setText(phoneNumber);
+                    hoursOfUseTV.setText(hoursOfUse);
+                    rentalCostTV.setText(rentalCost);
 
 
                 } catch (JSONException e) {
@@ -122,14 +142,14 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                     //그중에서 data를 키값으로 갖는 jsonarray를 가져옴
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                    for(int i=0;i<jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject searchItem = jsonArray.getJSONObject(i);
                         String id = searchItem.getString("id");
-                        String review= searchItem.getString("review");
+                        String review = searchItem.getString("review");
                         String date = searchItem.getString("date");
                         String star = searchItem.getString("star");
 
-                        FacilityReviewItem facilityReviewItem=new FacilityReviewItem(id,review,date,Integer.parseInt(star));
+                        FacilityReviewItem facilityReviewItem = new FacilityReviewItem(id, review, date, Integer.parseInt(star));
                         facilityReviewItemArrayList.add(facilityReviewItem);
                         facilityReviewAdapter.notifyDataSetChanged();
                     }
@@ -140,5 +160,28 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void getReview(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                result = okHttpThread.getData("http://52.79.146.35/facility_review/?id=" + id);
+                displayFacilityReview(result);
+            }
+        }).start();
+    }
+
+    public void postReview(final String json){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                okHttpThread.postData("http://52.79.146.35/facility_review",json);
+                displayFacilityReview(result);
+                getReview();
+            }
+        }).start();
     }
 }
