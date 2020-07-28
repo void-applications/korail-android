@@ -1,25 +1,33 @@
 package org.personal.korail_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.personal.korail_android.adapter.FacilityReviewAdapter;
 import org.personal.korail_android.background.OkHttp;
-import org.personal.korail_android.item.FacilitiesItem;
+import org.personal.korail_android.item.FacilityReviewItem;
+
+import java.util.ArrayList;
 
 public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
 
     String result;
     Handler handler;
     TextView stationNameTV, locationTV, equipmentTV, rentalCostTV, hoursOfUseTV, phoneNumberTV;
+    ArrayList<FacilityReviewItem> facilityReviewItemArrayList;
+    FacilityReviewAdapter facilityReviewAdapter;
+    LinearLayoutManager linearLayoutManager;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,13 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
         rentalCostTV = findViewById(R.id.rentalCostTV);
         hoursOfUseTV = findViewById(R.id.hoursOfUseTV);
         phoneNumberTV = findViewById(R.id.phoneNumberTV);
+        recyclerView=findViewById(R.id.facilitiesReviewRecyclerview);
+
+        facilityReviewItemArrayList=new ArrayList<>();
+        facilityReviewAdapter=new FacilityReviewAdapter(facilityReviewItemArrayList,this);
+        linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(facilityReviewAdapter);
 
         handler=new Handler();
 
@@ -47,6 +62,9 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                 displayFacility(result);
             }
         }).start();
+
+
+
     }
 
     public void displayFacility(final String result) {
