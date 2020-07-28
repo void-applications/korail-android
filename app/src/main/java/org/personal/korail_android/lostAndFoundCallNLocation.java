@@ -16,10 +16,10 @@ public class lostAndFoundCallNLocation extends AppCompatActivity {
     TextView locationTV;
     TextView callTV;
     ImageView callIV;
-    String result;
-    Handler handler;
-    String phoneNumber;
-    String tel;
+
+    String number;
+    String centerNumber;
+    String centerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,47 +29,25 @@ public class lostAndFoundCallNLocation extends AppCompatActivity {
         locationTV = findViewById(R.id.locationTV);
         callTV = findViewById(R.id.callTV);
         callIV = findViewById(R.id.call);
-        handler=new Handler();
 
+        Intent getInfoIntent = getIntent();
+        centerName = getInfoIntent.getStringExtra("centerName");
+        centerNumber = getInfoIntent.getStringExtra("centerNumber");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                OkHttp okHttpThread = new OkHttp();
-                result = okHttpThread.getData("http://52.79.146.35/lost_found_center");
-                display(result);
-            }
-        }).start();
+        callTV.setText(centerNumber);
+        locationTV.setText(centerName);
+        number = centerNumber;
 
         //전화기 모양 아이콘 클릭시 유실물 센터 전화 연결 됨.
         callIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-             startActivity(new Intent("android.action.CALL", Uri.parse(tel)));
+                Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+number));
+                startActivity(callIntent);
+
             }
         });
+
     }
-    public void display(final String result){
-
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-
-                    phoneNumber = result.split("+//+")[0];
-                    String name = result.split("+//+")[1];
-                    tel = "tel:"+result.split("+////+")[0];
-                    callTV.setText(phoneNumber);
-                    locationTV.setText(name);
-
-
-                    }
-                }
-            );
-        };
-    };
-
-
-
-
+    }
