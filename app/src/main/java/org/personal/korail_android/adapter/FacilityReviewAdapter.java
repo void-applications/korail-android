@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,7 +37,7 @@ public class FacilityReviewAdapter extends RecyclerView.Adapter<FacilityReviewAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.dateTV.setText(facilityReviewItemArrayList.get(position).getDate());
-        holder.starTV.setText(facilityReviewItemArrayList.get(position).getStar());
+        holder.starTV.setRating(facilityReviewItemArrayList.get(position).getStar());
         holder.reviewTV.setText(facilityReviewItemArrayList.get(position).getReview());
 
     }
@@ -49,7 +50,7 @@ public class FacilityReviewAdapter extends RecyclerView.Adapter<FacilityReviewAd
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView reviewTV;
-        TextView starTV;
+        RatingBar starTV;
         TextView dateTV;
 
         public ViewHolder(@NonNull View itemView) {
