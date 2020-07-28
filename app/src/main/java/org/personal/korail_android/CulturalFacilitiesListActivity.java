@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -73,6 +74,16 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
                         displayFacilities(result,searchStation);
                     }
                 }).start();
+            }
+        });
+
+        facilitiesAdapter.setOnItemClickListener(new FacilitiesAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getApplicationContext(),CulturalFacilitiesDetailActivity.class);
+                intent.putExtra("id",facilitiesItemArrayList.get(position).getId());
+                startActivity(intent);
+
             }
         });
 
