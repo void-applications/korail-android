@@ -24,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
+        android:privateImeOptions="defaultInputmode=korean"
         android:id="@+id/searchET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:text="oo 역 검색결과 총 o건"
         app:layout_constraintTop_toBottomOf="@id/searchET"
+        android:visibility="gone"
         android:padding="15dp" />
 
     <androidx.recyclerview.widget.RecyclerView
