@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setListener() {
         chatIB.setOnClickListener(this)
-        eventIB.setOnClickListener(this)
+        culturalFacilitiesIB.setOnClickListener(this)
         lostAndFoundIB.setOnClickListener(this)
     }
 
@@ -26,8 +26,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(toChatList)
             }
 
-            R.id.eventIB -> {
-                val toEventList = Intent(this, EventListActivity::class.java)
+            R.id.culturalFacilitiesIB -> {
+                val toEventList = Intent(this, CulturalFacilitiesListActivity::class.java)
                 startActivity(toEventList)
             }
 
