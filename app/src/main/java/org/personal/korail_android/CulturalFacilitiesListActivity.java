@@ -114,14 +114,38 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
                         String floor = searchItem.getString("floor");
                         String location = searchItem.getString("location");
                         String equipment = searchItem.getString("equipment");
-                        FacilitiesItem facilitiesItem = new FacilitiesItem(id, lineName, stationName, floor, location, equipment);
+                        int image=setImageView();
+                        FacilitiesItem facilitiesItem = new FacilitiesItem(id, lineName, stationName, floor, location, equipment,image);
                         facilitiesItemArrayList.add(facilitiesItem);
                         facilitiesAdapter.notifyDataSetChanged();
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    public int setImageView(){
+        int randomNumber=(int)(Math.random()*7);
+        switch (randomNumber){
+            case 0:
+                return R.drawable.pink_item;
+            case 1:
+                return R.drawable.yellow_item;
+            case 2:
+                return R.drawable.green_item;
+            case 3:
+                return R.drawable.purple_item;
+            case 4:
+                return R.drawable.mint_item;
+            case 5:
+                return R.drawable.skyblue_item;
+            case 6:
+                return R.drawable.blue_item;
+            default:
+                return R.drawable.pink_item;
+        }
     }
 }
