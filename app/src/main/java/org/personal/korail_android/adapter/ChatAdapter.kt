@@ -60,7 +60,7 @@ class ChatAdapter(val context: Context, private val myTokenTableId: Int, private
             myChatViewHolder.myMessageTimeTV.text = messageData.message_time
         } else {
             val othersChatViewHolder = holder as OthersChatViewHolder
-//            othersChatViewHolder.nameTV.text = messageData.name // TODO : 이름 랜덤으로 결정하기
+            othersChatViewHolder.nameTV.text = messageData.senderName // TODO : 이름 랜덤으로 결정하기
             othersChatViewHolder.otherMessageTV.text = messageData.message
             othersChatViewHolder.otherMessageTimeTV.text = messageData.message_time
         }
