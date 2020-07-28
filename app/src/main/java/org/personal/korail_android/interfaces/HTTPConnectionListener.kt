@@ -1,4 +1,4 @@
-package org.personal.korail_android.`interface`
+package org.personal.korail_android.interfaces
 
 interface HTTPConnectionListener {
     fun onHttpRespond(responseData : HashMap<*, *>)

@@ -6,7 +6,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.os.Message
 import android.util.Log
-import org.personal.korail_android.`interface`.HTTPConnectionListener
+import org.personal.korail_android.interfaces.HTTPConnectionListener
 import org.personal.korail_android.background.HTTPConnectionThread
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.DELETE_REQUEST
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.GET_REQUEST

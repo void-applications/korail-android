@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.os.Message
 import android.util.Log
-import org.personal.korail_android.`interface`.HTTPConnectionListener
+import org.personal.korail_android.interfaces.HTTPConnectionListener
 import org.personal.korail_android.utils.serverConnection.HTTPRequest
 
 class HTTPConnectionThread(name: String?, private val httpConnectionListener: HTTPConnectionListener) : HandlerThread(name) {
