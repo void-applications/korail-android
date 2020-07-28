@@ -10,7 +10,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_chatting.*
 import org.json.JSONObject
-import org.personal.korail_android.`interface`.HTTPConnectionListener
+import org.personal.korail_android.interfaces.HTTPConnectionListener
 import org.personal.korail_android.adapter.ChatAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_SIMPLE_POST_METHOD
 import org.personal.korail_android.item.ChatData
@@ -23,6 +23,10 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
 
     private val TAG = javaClass.name
     private val serverPage = "korail-chat"
+
+    // --- 채팅방과 유저 이름 변수 모음 ---
+    private val userName by lazy { intent.getStringExtra("userName") }
+    private val station by lazy { intent.getStringExtra("station") }
 
     // --- http 통신관련 변수 모음 ---
     private lateinit var httpConnectionService: HTTPConnectionService
@@ -41,9 +45,14 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chatting)
+        setInitView() // 초기 값 설정 작업
         setListener()
         defineReceiver()
         buildRecyclerView()
+    }
+
+    private fun setInitView() {
+        headerTV.text = station
     }
 
     override fun onStart() {
@@ -78,6 +87,7 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
         chattingBoxRV.adapter = chatAdapter
     }
 
+    // 파이어베이스 서비스에서 브로드캐스트하는 채팅 메시지를 받는다.
     private fun defineReceiver() {
 
         broadcastReceiver = object : BroadcastReceiver() {
@@ -85,11 +95,19 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
                 Log.i(TAG, "working?")
                 when (intent?.action) {
                     ACTION_RECEIVE_CHAT -> {
-                        val senderId = intent.getIntExtra("senderId", 0)
-                        val message = intent.getStringExtra("message")
-                        val chatData = ChatData(senderId, message, "3030")
-                        chattingList.add(chatData)
-                        chatAdapter.notifyDataSetChanged()
+
+                        val senderStation = intent.getStringExtra("station")
+
+                        // 같은 역에서 보낸 메시지라면 메시지 추가
+                        if (station == senderStation) {
+                            val senderId = intent.getIntExtra("senderId", 0)
+                            val senderName = intent.getStringExtra("senderName")
+                            val message = intent.getStringExtra("message")
+                            val messageTime = intent.getStringExtra("messageTime")
+                            val chatData = ChatData(senderId, senderName, message, messageTime)
+                            chattingList.add(chatData)
+                            chatAdapter.notifyDataSetChanged()
+                        }
                     }
                 }
             }
@@ -114,10 +132,13 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
         val chatInput = chattingInputED.text.toString()
 
         if (chatInput.trim() != "") {
-            val postData = JSONObject()
-            postData.put("what", "sendMessage")
-            postData.put("senderId", tokenTableId)
-            postData.put("message", chatInput)
+            val postData = JSONObject().apply {
+                put("what", "sendMessage")
+                put("station", station)
+                put("senderId", tokenTableId)
+                put("senderName", userName)
+                put("message", chatInput)
+            }
 
             httpConnectionService.serverPostRequest(serverPage, postData.toString(), REQUEST_SIMPLE_POST_METHOD, SEND_MESSAGE)
             chattingInputED.text = null
