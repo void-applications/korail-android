@@ -33,10 +33,10 @@ class ChatAdapter(val context: Context, private val myTokenTableId: Int, private
         val view: View
 
         if (viewType == MY_CHAT) {
-            view = inflater.inflate(R.layout.item_my_chat, parent, false)
+            view = inflater.inflate(R.layout.item_chat_mine, parent, false)
             return MyChatViewHolder(view)
         }
-        view = inflater.inflate(R.layout.item_others_chat, parent, false)
+        view = inflater.inflate(R.layout.item_chat_others, parent, false)
         return OthersChatViewHolder(view)
     }
 
