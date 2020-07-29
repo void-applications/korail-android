@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/HeaderTV">
@@ -81,7 +82,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/equipment"
+                    android:background="@drawable/ic_baseline_person_24"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,7 +101,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/rental_cost"
+                    android:background="@drawable/ic_baseline_import_contacts_24"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/performerIV" />
 
@@ -138,7 +139,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/phone_number"
+                    android:background="@drawable/hours_of_use"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/startTimeIV" />
 
@@ -244,9 +245,9 @@
                 app:layout_constraintTop_toBottomOf="@id/review" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/facilitiesReviewRecyclerview"
+                android:id="@+id/eventReviewRV"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:background="#f5f5f5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reviewIV"

@@ -95,6 +95,7 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
 
     private fun setProgressState(eventItem: EventItem, progressStateTV: TextView) {
         val currentTime = CalendarHelper.getCurrentTimeInMills()
+        val eventStartTime = CalendarHelper.stringToTimeInMills(eventItem.start_time!!)
         val eventEndTime = CalendarHelper.stringToTimeInMills(eventItem.end_time!!)
 
 
@@ -102,12 +103,14 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
             eventItem.progressState = "종료"
             progressStateTV.text = "종료"
             progressStateTV.setTextColor(context.getColor(R.color.red))
-        } else {
+        } else if (currentTime < eventStartTime) {
+            eventItem.progressState = "공연 예정"
+            progressStateTV.text = "공연 예정"
+            progressStateTV.setTextColor(context.getColor(R.color.black))
+        } else{
             eventItem.progressState = "진행중"
             progressStateTV.text = "진행중"
             progressStateTV.setTextColor(context.getColor(R.color.green))
         }
-
-
     }
 }
