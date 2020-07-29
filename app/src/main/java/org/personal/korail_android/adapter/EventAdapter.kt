@@ -107,7 +107,5 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
             progressStateTV.text = "진행중"
             progressStateTV.setTextColor(context.getColor(R.color.green))
         }
-
-
     }
 }
