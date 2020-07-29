@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LostAndFoundFourth"></activity>
+        <activity android:name=".EventWriteReviewActivity"></activity>
+        <activity android:name=".LostAndFoundFourth" />
         <activity android:name=".LostAndFoundStepThird" />
         <activity android:name=".LostAndFoundSecond" />
         <activity android:name=".LostAndFoundStepFirst" />
