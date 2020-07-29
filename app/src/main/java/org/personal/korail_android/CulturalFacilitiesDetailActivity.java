@@ -86,7 +86,6 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
         super.onStart();
 
         getReview();
-        reviewRB.setRating(0);
     }
 
     public void displayFacility(final String result) {
@@ -171,13 +170,15 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
                         starList.add(Integer.parseInt(star));
                     }
 
-                    int sum = 0;
-                    for (int i = 0; i < starList.size(); i++) {
-                        sum += starList.get(i);
+                    if(starList.size()>0){
+                        int sum = 0;
+                        for (int i = 0; i < starList.size(); i++) {
+                            sum += starList.get(i);
+                        }
+                        float average = sum / (float) starList.size();
+                        averageFloatTV.setText(String.format("%.2f", average)+" 점");
+                        averageRB.setRating(average);
                     }
-                    float average = sum / (float) starList.size();
-                    averageFloatTV.setText(average+" 점");
-                    averageRB.setRating(average);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -202,11 +203,15 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
 
         @Override
         public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+            Log.e("result","onRatingChange");
             int starNum = (int) reviewRB.getRating();
-            Intent ratingIntent = new Intent(getApplicationContext(), WriteReviewActivity.class);
-            ratingIntent.putExtra("id", id);
-            ratingIntent.putExtra("starNum", starNum);
-            startActivity(ratingIntent);
+
+            if(!(reviewRB.getRating() ==0)){
+                Intent ratingIntent = new Intent(getApplicationContext(), WriteReviewActivity.class);
+                ratingIntent.putExtra("id", id);
+                ratingIntent.putExtra("starNum", starNum);
+                startActivity(ratingIntent);
+            }
         }
     }
 }

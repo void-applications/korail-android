@@ -71,7 +71,6 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
             }
         });
 
-        holder.imageView.setImageResource(facilitiesItemArrayList.get(position).getDrawable());
     }
 
     @Override
@@ -88,7 +87,6 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
         TextView locationTV;
         TextView stationNameTV;
         TextView equipmentTV;
-        ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,7 +94,6 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
             this.locationTV=itemView.findViewById(R.id.locationTV);
             this.stationNameTV=itemView.findViewById(R.id.stationNameTV);
             this.equipmentTV=itemView.findViewById(R.id.equipmentTV);
-            this.imageView=itemView.findViewById(R.id.facilityIV);
 
         }
     }
