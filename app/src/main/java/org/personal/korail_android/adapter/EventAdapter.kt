@@ -1,6 +1,7 @@
 package org.personal.korail_android.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,6 +65,7 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val eventItem = subwayEventList[position]
+        Log.i(TAG, "onBindViewHolder: $eventItem.location")
         holder.titleTV.text = eventItem.performer
         holder.locationIV.setImageResource(getLocationResourceId(eventItem.location))
         holder.locationTV.text = eventItem.location
