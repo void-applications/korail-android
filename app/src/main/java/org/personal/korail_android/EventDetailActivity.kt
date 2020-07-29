@@ -51,6 +51,7 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
 
     override fun onStart() {
         super.onStart()
+        eventReviewList.clear()
         startBoundService()
     }
 
@@ -99,7 +100,9 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
                 service as HTTPConnectionService.LocalBinder
             httpConnectionService = binder.getService()!!
             httpConnectionService.setOnHttpRespondListener(this@EventDetailActivity)
+            val handler = Handler(Looper.getMainLooper())
             httpConnectionService.serverGetRequest(makeRequestUrl(), REQUEST_EVENT_REVIEW_LIST, GET_EVENT_REVIEW_LIST)
+
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
@@ -117,11 +120,25 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
         when (responseData["whichRespond"] as Int) {
             GET_EVENT_REVIEW_LIST -> {
                 Log.i(TAG, "onHttpRespond: ${responseData["respondData"]}")
-                val responseEventReviewList = responseData["respondData"] as ArrayList<EventReviewItem>?
-                if (responseEventReviewList != null) {
+                if (responseData["respondData"] != null) {
+                    val responseEventReviewList = responseData["respondData"] as ArrayList<EventReviewItem>
+                    var starsSum = 0f
+                    val totalReviewCount = responseEventReviewList.count()
 
-                    responseEventReviewList.forEach { eventReviewList.add(it) }
-                    handler.post { eventReviewAdapter.notifyDataSetChanged() }
+                    responseEventReviewList.forEach {
+                        eventReviewList.add(it)
+                        starsSum += it.stars
+                    }
+
+                    val average = starsSum / totalReviewCount
+
+                    handler.post {
+                        eventReviewAdapter.notifyDataSetChanged()
+
+
+                        averageFloatTV.text = String.format("%.2f", average) + " 점"
+                        averageStarRB.rating = average
+                    }
                 }
             }
         }

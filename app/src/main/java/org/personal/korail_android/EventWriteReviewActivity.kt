@@ -71,7 +71,6 @@ class EventWriteReviewActivity : AppCompatActivity(), View.OnClickListener, HTTP
                         put("star", reviewRB.rating)
                     }
                     httpConnectionService.serverPostRequest(serverPage, postData.toString(), REQUEST_SIMPLE_POST_METHOD, UPLOAD_EVENT_REVIEW)
-                    finish()
                 } else {
                     Toast.makeText(this, "리뷰를 작성해주세요", Toast.LENGTH_SHORT).show()
                 }
@@ -107,6 +106,7 @@ class EventWriteReviewActivity : AppCompatActivity(), View.OnClickListener, HTTP
         when (responseData["whichRespond"] as Int) {
             UPLOAD_EVENT_REVIEW -> {
                 Log.i(TAG, "onHttpRespond: ${responseData["respondData"]}")
+                finish()
             }
         }
     }
