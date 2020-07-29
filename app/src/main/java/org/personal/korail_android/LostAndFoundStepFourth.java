@@ -1,13 +1,13 @@
 package org.personal.korail_android;
 
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-class LostAndFoundStepFourth extends Fragment {
+import androidx.fragment.app.Fragment;
+
+public class LostAndFoundStepFourth extends Fragment {
 
     private String title;
     private int page;
@@ -22,7 +22,6 @@ class LostAndFoundStepFourth extends Fragment {
         return stepFourth;
 
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,4 +41,3 @@ class LostAndFoundStepFourth extends Fragment {
         return view;
     }
 }
-

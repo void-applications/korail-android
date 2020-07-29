@@ -1,17 +1,16 @@
 package org.personal.korail_android;
 
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 public class LostAndFoundStepFirst extends Fragment {
 
     private String title;
     private int page;
-
     public static LostAndFoundStepFirst newInstance(int page, String title) {
 
         LostAndFoundStepFirst stepFirst = new LostAndFoundStepFirst();
@@ -22,7 +21,6 @@ public class LostAndFoundStepFirst extends Fragment {
         return stepFirst;
 
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,4 @@ public class LostAndFoundStepFirst extends Fragment {
 //        tvLabel.setText(page + " -- " + title);
         return view;
     }
-
-
-
 }
