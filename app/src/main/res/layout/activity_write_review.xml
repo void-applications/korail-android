@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WriteReviewActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#e6ee9c"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    <TextView
+        android:text="취소"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"/>
+    <TextView
+        android:id="@+id/HeaderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="#e6ee9c"
+        android:gravity="center|start"
+        android:text="문화시설 리뷰작성 페이지"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/cancelButton"
+        app:layout_constraintRight_toLeftOf="@id/writeButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/writeButton"
+        android:text="등록"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RatingBar
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        android:id="@+id/reviewRB"
+        android:isIndicator="false"
+        android:stepSize="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="문화시설에 대해 평가를 해주세요 ..."
+        android:id="@+id/reviewET"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:gravity="top"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviewRB"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

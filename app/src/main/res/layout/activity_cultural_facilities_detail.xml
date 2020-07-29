@@ -1,143 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/HeaderTV"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/main"
+        android:background="#e6ee9c"
         android:gravity="center|start"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="예술인들의 문화시설 리뷰 - 상세페이지"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/subwayIV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/location"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HeaderTV" />
 
     <TextView
         android:id="@+id/stationNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="20dp"
         android:text="역이름"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HeaderTV"
-        />
-    <TextView
-        android:id="@+id/locationTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:text="위치"
-        android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/stationNameTV" />
+        app:layout_constraintBottom_toBottomOf="@id/subwayIV"
+        app:layout_constraintLeft_toRightOf="@id/subwayIV"
+        app:layout_constraintTop_toTopOf="@id/subwayIV" />
 
-    <TextView
-        android:id="@+id/equipmentTV"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/info"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:text="장비"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/locationTV" />
-    <TextView
-        android:id="@+id/rentalCostTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:text="대여비용"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/equipmentTV" />
-    <TextView
-        android:id="@+id/hoursOfUseTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:text="이용시간"
-        android:textSize="17sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rentalCostTV" />
+        android:background="#e5e5e5"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/stationNameTV">
 
-    <TextView
-        android:id="@+id/phoneNumberTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:text="전화번호"
-        android:textSize="17sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hoursOfUseTV" />
+        <ImageView
+            android:id="@+id/locationIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/location_iv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="위치"
+            app:layout_constraintBottom_toBottomOf="@id/locationIV"
+            app:layout_constraintLeft_toRightOf="@id/locationIV"
+            app:layout_constraintTop_toTopOf="@id/locationIV" />
+
+        <ImageView
+            android:id="@+id/equipmentIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/equipment"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationIV" />
+
+        <TextView
+            android:id="@+id/equipmentTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="장비"
+            app:layout_constraintBottom_toBottomOf="@id/equipmentIV"
+            app:layout_constraintLeft_toRightOf="@id/equipmentIV"
+            app:layout_constraintTop_toTopOf="@id/equipmentIV" />
+
+        <ImageView
+            android:id="@+id/rentalCostIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rental_cost"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/equipmentIV" />
+
+        <TextView
+            android:id="@+id/rentalCostTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="대여비용"
+            app:layout_constraintBottom_toBottomOf="@id/rentalCostIV"
+            app:layout_constraintLeft_toRightOf="@id/rentalCostIV"
+            app:layout_constraintTop_toTopOf="@id/rentalCostIV" />
+
+        <ImageView
+            android:id="@+id/hoursOfUseIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/hours_of_use"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rentalCostIV" />
+
+        <TextView
+            android:id="@+id/hoursOfUseTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="이용시간"
+            app:layout_constraintBottom_toBottomOf="@id/hoursOfUseIV"
+            app:layout_constraintLeft_toRightOf="@id/hoursOfUseIV"
+            app:layout_constraintTop_toTopOf="@id/hoursOfUseIV" />
+
+        <ImageView
+            android:id="@+id/phoneNumberIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/phone_number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hoursOfUseIV" />
+
+        <TextView
+            android:id="@+id/phoneNumberTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="전화번호"
+            app:layout_constraintBottom_toBottomOf="@id/phoneNumberIV"
+            app:layout_constraintLeft_toRightOf="@id/phoneNumberIV"
+            app:layout_constraintTop_toTopOf="@id/phoneNumberIV" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/averageStarTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/phoneNumberTV"
-        app:layout_constraintRight_toLeftOf="@id/averageStarTV"
-        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text="평점"
+        android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="평점" />
+        app:layout_constraintTop_toBottomOf="@id/info" />
+
+    <ImageView
+        android:id="@+id/smileIV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/smile"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/averageStarRB"
+        app:layout_constraintTop_toBottomOf="@id/averageStarTV" />
 
     <RatingBar
         android:id="@+id/averageStarRB"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/averageStarTV"
-        app:layout_constraintLeft_toRightOf="@id/averageStarTV"
+        android:stepSize="0.05"
+        app:layout_constraintBottom_toBottomOf="@id/smileIV"
+        app:layout_constraintLeft_toRightOf="@id/smileIV"
+        app:layout_constraintTop_toTopOf="@id/smileIV" />
+    <TextView
+        android:id="@+id/averageFloatTV"
+        app:layout_constraintLeft_toRightOf="@id/averageStarRB"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/averageStarTV"
-        android:stepSize="1"
-        android:rating="3"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        />
+        app:layout_constraintTop_toTopOf="@id/averageStarRB"
+        android:text="0.0"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.2"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/reviewET"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="20dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/averageStarTV"
-        android:hint="리뷰를 작성해주세요.." />
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/smileIV">
 
-    <RatingBar
-        android:id="@+id/reviewRB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toLeftOf="@id/writeButton"
+        <TextView
+            android:id="@+id/evaluateTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="평가해주세요 ! "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/reviewRB"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="false"
+            android:stepSize="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/evaluateTV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/reviewIV"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/review"
         app:layout_constraintLeft_toLeftOf="parent"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        app:layout_constraintTop_toBottomOf="@id/reviewET"/>
-
-    <Button
-        android:id="@+id/writeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="작성"
-        app:layout_constraintLeft_toRightOf="@id/reviewRB"
-        app:layout_constraintTop_toTopOf="@id/reviewRB"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/review" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/facilitiesReviewRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/writeButton"
+        android:background="#f5f5f5"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviewIV"
         tools:listitem="@layout/item_cultural_facilities_review" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
