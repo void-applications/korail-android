@@ -48,6 +48,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
 
     override fun onStart() {
         super.onStart()
+        eventList.clear()
         startBoundService()
     }
 
@@ -114,9 +115,13 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     //TODO : eventItem 마무리 하기
     override fun onItemClick(view: View?, itemPosition: Int) {
         val eventItem = getSelectedStation(itemPosition)
-        if (eventItem.progressState == "진행") {
-
-            val toEventDetail = Intent(this, EventDetailActivity::class.java)
+        if (eventItem.progressState == "공연 예정") {
+            Log.i(TAG, "onItemClick: 공연 예정")
+        } else {
+            val toEventDetail = Intent(this, EventDetailActivity::class.java).apply {
+                putExtra("eventItem", eventItem)
+            }
+            startActivity(toEventDetail)
         }
     }
 
