@@ -72,7 +72,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
             }
 
             R.id.lostAndFoundIB -> {
-                val toLostAndFound = Intent(this, lostAndFoundStep::class.java)
+                val toLostAndFound = Intent(this, lostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }

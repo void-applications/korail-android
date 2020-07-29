@@ -71,6 +71,27 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_navigation" />
+    <ImageView
+        android:id="@+id/questionIV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/question"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/questionTV"
+        app:layout_constraintTop_toBottomOf="@+id/searchStation" />
+
+    <TextView
+        android:id="@+id/questionTV"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+        android:text="유실물 처리 절차가 궁금하신가요?"
+        app:layout_constraintLeft_toRightOf="@+id/questionIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchIV"
+        android:gravity="left|center"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

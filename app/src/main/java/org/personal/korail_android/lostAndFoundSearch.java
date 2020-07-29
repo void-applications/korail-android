@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,6 +27,7 @@ public class lostAndFoundSearch extends AppCompatActivity implements BottomNavig
     String TAG = "유실물 전화 액티비티";
 
     Intent searchIntent;
+    TextView questionTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,15 @@ public class lostAndFoundSearch extends AppCompatActivity implements BottomNavig
         searchIV = findViewById(R.id.searchIV);
         bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(this);
+        questionTV = findViewById(R.id.questionTV);
+
+        questionTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent questionIntent = new Intent(getApplicationContext(), lostAndFoundStep.class);
+                startActivity(questionIntent);
+            }
+        });
         handler = new Handler();
 
         handler=new Handler();
