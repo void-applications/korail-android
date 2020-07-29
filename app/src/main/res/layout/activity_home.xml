@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="지하철 행사"
+        android:text="문화시설"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -76,16 +76,41 @@
         app:layout_constraintTop_toBottomOf="@id/lostAndFoundIB" />
 
     <ImageButton
-        android:id="@+id/chatIB"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="370dp"
+        android:id="@+id/eventIB"
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/shape_rounded_btn"
         android:backgroundTint="@color/homeBtn"
         app:layout_constraintBottom_toTopOf="@id/chatTV"
         app:layout_constraintLeft_toLeftOf="@id/culturalFacilitiesIB"
+        app:layout_constraintRight_toRightOf="@id/culturalFacilitiesIB"
+        app:layout_constraintTop_toBottomOf="@id/culturalFacilitiesTV" />
+
+    <TextView
+        android:id="@+id/eventIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="지하철 공연"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/eventIB"
+        app:layout_constraintRight_toRightOf="@id/eventIB"
+        app:layout_constraintTop_toBottomOf="@id/eventIB" />
+
+    <ImageButton
+        android:id="@+id/chatIB"
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_rounded_btn"
+        android:backgroundTint="@color/homeBtn"
+        app:layout_constraintBottom_toTopOf="@id/chatTV"
+        app:layout_constraintLeft_toLeftOf="@id/lostAndFoundIB"
         app:layout_constraintRight_toRightOf="@id/lostAndFoundIB"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/lostAndFoundTV" />
 
     <TextView
         android:id="@+id/chatTV"

@@ -17,6 +17,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         chatIB.setOnClickListener(this)
         culturalFacilitiesIB.setOnClickListener(this)
         lostAndFoundIB.setOnClickListener(this)
+        eventIB.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -29,6 +30,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             R.id.culturalFacilitiesIB -> {
                 val toEventList = Intent(this, CulturalFacilitiesListActivity::class.java)
                 startActivity(toEventList)
+            }
+
+            R.id.eventIB -> {
+                val toEvent = Intent(this, EventListActivity::class.java)
+                startActivity(toEvent)
             }
 
             R.id.lostAndFoundIB -> {
