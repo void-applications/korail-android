@@ -8,6 +8,7 @@
     <color name="green">#3DEC55</color>
     <color name="main">#0066C7</color>
     <color name="transparency">#00ff0000</color>
+    <color name="white">#ffffff</color>
 
     <!--    버튼 관련 색상-->
     <color name="homeBtn">#90caf9</color>
