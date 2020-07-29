@@ -110,11 +110,12 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     override fun onClick(p0: View?) {
     }
 
-
     // -------------------------- 리사이클러 뷰 아이템 클릭 리스너 관련 이벤트 --------------------------
     //TODO : eventItem 마무리 하기
     override fun onItemClick(view: View?, itemPosition: Int) {
         val eventItem = getSelectedStation(itemPosition)
+
+        val toEventDetail = Intent(this, EventDetailActivity::class.java)
     }
 
     override fun onItemLongClick(view: View?, itemPosition: Int) {
