@@ -101,7 +101,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
             R.id.lostAndFound -> {
                 val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
-            }
+            } 
         }
         overridePendingTransition(0, 0)
         return true

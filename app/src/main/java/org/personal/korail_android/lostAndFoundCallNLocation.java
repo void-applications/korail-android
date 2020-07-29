@@ -30,10 +30,10 @@ public class lostAndFoundCallNLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_and_found_call_n_location);
 
-        locationTV = findViewById(R.id.locationTV);
+        locationTV = findViewById(R.id.location);
         callTV = findViewById(R.id.callTV);
         callIV = findViewById(R.id.call);
-        number = centerNumber;
+
 
         //전화기 모양 아이콘 클릭시 유실물 센터 전화 연결 됨.
         callIV.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +68,9 @@ public class lostAndFoundCallNLocation extends AppCompatActivity {
                 Log.d(TAG, "센터 전화번호 확인 : "+ centerNumber);
                 callTV.setText(centerNumber);
                 locationTV.setText(centerName);
+                number = centerNumber;
+                Log.d(TAG, "연락 전화번호 확인 : "+ number);
+
 
             }
         }).start();
