@@ -20,6 +20,7 @@ class HTTPConnectionThread(name: String?, private val httpConnectionListener: HT
 
         // get 메소드 관련
         const val REQUEST_SIMPLE_GET_METHOD = 1
+        const val REQUEST_EVENT_LIST = 2
 
         // post 메소드 관련
         const val REQUEST_SIMPLE_POST_METHOD = 1
@@ -53,6 +54,10 @@ class HTTPConnectionThread(name: String?, private val httpConnectionListener: HT
                             // 간단한 GET request
                             REQUEST_SIMPLE_GET_METHOD -> {
                                 httpRespondData["respondData"] = httpRequest.getMethodToServer()
+                            }
+
+                            REQUEST_EVENT_LIST -> {
+                                httpRespondData["respondData"] = httpRequest.getEventItemList()
                             }
                         }
                     }
