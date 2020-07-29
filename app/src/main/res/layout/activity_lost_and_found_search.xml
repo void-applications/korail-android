@@ -31,7 +31,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="76dp"
         android:gravity="center"
-        android:text="물건을 잃어버리신 역의 이름을 검색해주세요"
+        android:text="물건을 잃어버린 역의 이름을 검색해주세요"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
