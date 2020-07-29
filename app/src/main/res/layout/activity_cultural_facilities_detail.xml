@@ -13,7 +13,7 @@
         android:gravity="center|start"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="예술인들의 문화시설 리뷰 - 상세페이지"
+        android:text="문화시설 리뷰 - 상세페이지"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"

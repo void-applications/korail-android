@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class lostAndFoundSearch extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class LostAndFoundSearch extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     EditText stationNameET;
     ImageView searchIV;
@@ -43,7 +43,7 @@ public class lostAndFoundSearch extends AppCompatActivity implements BottomNavig
         questionTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent questionIntent = new Intent(getApplicationContext(), lostAndFoundStep.class);
+                Intent questionIntent = new Intent(getApplicationContext(), LostAndFoundStepMain.class);
                 startActivity(questionIntent);
             }
         });

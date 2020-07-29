@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_event_list.*
 import kotlinx.android.synthetic.main.activity_event_list.bottomNavigation
 import kotlinx.android.synthetic.main.activity_event_list.clearSearchInputIB
 import kotlinx.android.synthetic.main.activity_event_list.searchStationET
-import kotlinx.android.synthetic.main.activity_home.*
 import org.personal.korail_android.adapter.EventAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_EVENT_LIST
 import org.personal.korail_android.interfaces.HTTPConnectionListener
@@ -99,7 +98,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, lostAndFoundSearch::class.java)
+                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }
@@ -111,11 +110,12 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     override fun onClick(p0: View?) {
     }
 
-
     // -------------------------- 리사이클러 뷰 아이템 클릭 리스너 관련 이벤트 --------------------------
     //TODO : eventItem 마무리 하기
     override fun onItemClick(view: View?, itemPosition: Int) {
         val eventItem = getSelectedStation(itemPosition)
+
+        val toEventDetail = Intent(this, EventDetailActivity::class.java)
     }
 
     override fun onItemLongClick(view: View?, itemPosition: Int) {
