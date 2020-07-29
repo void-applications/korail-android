@@ -1,8 +1,11 @@
 package org.personal.korail_android.utils.serverConnection
 
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import org.personal.korail_android.item.EventItem
 
-class HTTPRequest(private val serverPage: String) : HTTPOutPut {
+class HTTPRequest(serverPage: String) : HTTPOutPut {
 
     companion object {
         const val POST = 1
@@ -23,6 +26,13 @@ class HTTPRequest(private val serverPage: String) : HTTPOutPut {
         val jsonString: String = hTTPConnection.getRequest()
         Log.i(TAG, "getMethodToServer : ${hTTPConnection.responseCode}")
         return jsonString.replace("\"", "")
+    }
+
+    override fun getEventItemList(): ArrayList<EventItem> {
+        val jsonString: String = hTTPConnection.getRequest()
+        val gson = Gson()
+
+        return gson.fromJson(jsonString, object : TypeToken<ArrayList<EventItem>>() {}.type)
     }
 
     //------------------ POST 관련 메소드 모음 ------------------
