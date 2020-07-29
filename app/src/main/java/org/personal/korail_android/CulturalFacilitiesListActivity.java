@@ -1,5 +1,6 @@
 package org.personal.korail_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,10 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +27,7 @@ import org.personal.korail_android.item.FacilitiesItem;
 
 import java.util.ArrayList;
 
-public class CulturalFacilitiesListActivity extends AppCompatActivity {
+public class CulturalFacilitiesListActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     ArrayList<FacilitiesItem> facilitiesItemArrayList;
     FacilitiesAdapter facilitiesAdapter;
@@ -33,6 +38,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
     TextView resultTV;
     EditText searchET;
     ImageButton searchIB;
+    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,8 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
         resultTV = findViewById(R.id.resultCountTV);
         searchET = findViewById(R.id.searchStationET);
         searchIB = findViewById(R.id.searchIconIB);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(this);
 
         RecyclerDecoration recyclerDecoration=new RecyclerDecoration(50);
         recyclerView.addItemDecoration(recyclerDecoration);
@@ -92,6 +100,12 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bottomNavigation.setSelectedItemId(R.id.culturalFacilities);
+    }
+
     public void displayFacilities(final String result, final String searchStation) {
 
         handler.post(new Runnable() {
@@ -129,4 +143,31 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                Intent toHome = new  Intent(this, HomeActivity.class);
+                startActivity(toHome);
+                break;
+
+            case R.id.event:
+                Intent toEvent = new Intent(this, EventListActivity.class);
+                startActivity(toEvent);
+                break;
+
+            case R.id.chat:
+                Intent toChat  = new Intent(this, ChatListActivity.class);
+                startActivity(toChat);
+                break;
+
+            case R.id.lostAndFound:
+                Intent toLostAndFound = new Intent(this, lostAndFoundSearch.class);
+                startActivity(toLostAndFound);
+                break;
+        }
+        overridePendingTransition(0, 0);
+        return true;
+    }
 }

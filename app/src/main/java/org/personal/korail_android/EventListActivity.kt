@@ -11,25 +11,24 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_chat_list.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_event_list.*
+import kotlinx.android.synthetic.main.activity_event_list.bottomNavigation
 import kotlinx.android.synthetic.main.activity_event_list.clearSearchInputIB
 import kotlinx.android.synthetic.main.activity_event_list.searchStationET
-import org.json.JSONObject
+import kotlinx.android.synthetic.main.activity_home.*
 import org.personal.korail_android.adapter.EventAdapter
-import org.personal.korail_android.background.HTTPConnectionThread
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_EVENT_LIST
 import org.personal.korail_android.interfaces.HTTPConnectionListener
 import org.personal.korail_android.interfaces.ItemClickListener
 import org.personal.korail_android.item.EventItem
 import org.personal.korail_android.service.HTTPConnectionService
-import org.personal.korail_android.utils.SharedPreferenceHelper
-import java.text.SimpleDateFormat
 
-class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickListener, TextWatcher, HTTPConnectionListener {
+class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickListener, TextWatcher, HTTPConnectionListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val TAG = javaClass.name
     private val serverPage = "korail-event"
@@ -53,6 +52,11 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
         startBoundService()
     }
 
+    override fun onResume() {
+        super.onResume()
+        bottomNavigation.selectedItemId = R.id.event
+    }
+
     override fun onStop() {
         super.onStop()
         unbindService(connection)
@@ -61,6 +65,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     private fun setListener() {
         clearSearchInputIB.setOnClickListener(this)
         searchStationET.addTextChangedListener(this)
+        bottomNavigation.setOnNavigationItemSelectedListener(this) // 바텀 네비게이션 리스너
     }
 
     private fun buildRecyclerView() {
@@ -77,12 +82,38 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
         bindService(startService, connection, BIND_AUTO_CREATE)
     }
 
+    //------------------ 네비게이션 바 클릭 시 이벤트 관리하는 메소드 모음 ------------------
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> {
+                val toEvent  = Intent(this, HomeActivity::class.java)
+                startActivity(toEvent)
+            }
+            R.id.chat ->   {
+                val toChat  = Intent(this, ChatListActivity::class.java)
+                startActivity(toChat)
+            }
+            R.id.culturalFacilities -> {
+                val toCulturalFacilities  = Intent(this, CulturalFacilitiesListActivity::class.java)
+                startActivity(toCulturalFacilities)
+            }
+
+            R.id.lostAndFound -> {
+                val toLostAndFound  = Intent(this, lostAndFoundSearch::class.java)
+                startActivity(toLostAndFound)
+            }
+        }
+        overridePendingTransition(0, 0)
+        return true
+    }
+
     // -------------------------- 버튼 클릭 리스너 관련 이벤트 --------------------------
     override fun onClick(p0: View?) {
     }
 
 
     // -------------------------- 리사이클러 뷰 아이템 클릭 리스너 관련 이벤트 --------------------------
+    //TODO : eventItem 마무리 하기
     override fun onItemClick(view: View?, itemPosition: Int) {
         val eventItem = getSelectedStation(itemPosition)
     }
