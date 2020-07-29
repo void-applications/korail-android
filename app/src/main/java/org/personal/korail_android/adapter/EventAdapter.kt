@@ -67,12 +67,12 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
         val eventItem = subwayEventList[position]
         Log.i(TAG, "onBindViewHolder: $eventItem.location")
         holder.titleTV.text = eventItem.performer
-        holder.locationIV.setImageResource(getLocationResourceId(eventItem.location))
+        holder.locationIV.setImageResource(getLocationResourceId(eventItem))
         holder.locationTV.text = eventItem.location
         holder.contentTV.text = String.format("내용 : %s", eventItem.content)
         holder.startTimeTV.text = String.format("시작 : %s", eventItem.start_time)
         holder.endTimeTV.text = String.format("종료 : %s", eventItem.end_time)
-        setProgressState(eventItem.end_time!!, holder.progressStateTV)
+        setProgressState(eventItem, holder.progressStateTV)
     }
 
     fun filterList(filteredEventList: ArrayList<EventItem>) {
@@ -80,8 +80,8 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
         notifyDataSetChanged()
     }
 
-    private fun getLocationResourceId(location: String?): Int {
-        return when (location) {
+    private fun getLocationResourceId(eventItem: EventItem): Int {
+        val resourceId: Int = when (eventItem.location) {
             "사당역" -> R.drawable.event_sadang
             "노원역" -> R.drawable.event_nowon
             "이수역" -> R.drawable.event_isu
@@ -89,18 +89,25 @@ class EventAdapter(private val context: Context, private var subwayEventList: Ar
             "동대문역사문화공원역" -> R.drawable.event_dongdaemun_history_park
             else -> R.drawable.ic_baseline_train_24
         }
+        eventItem.locationImage = resourceId
+        return resourceId
     }
 
-    private fun setProgressState(endTime: String, progressStateTV: TextView) {
+    private fun setProgressState(eventItem: EventItem, progressStateTV: TextView) {
         val currentTime = CalendarHelper.getCurrentTimeInMills()
-        val eventEndTime = CalendarHelper.stringToTimeInMills(endTime)
+        val eventEndTime = CalendarHelper.stringToTimeInMills(eventItem.end_time!!)
+
 
         if (currentTime > eventEndTime) {
+            eventItem.progressState = "종료"
             progressStateTV.text = "종료"
             progressStateTV.setTextColor(context.getColor(R.color.red))
         } else {
+            eventItem.progressState = "진행중"
             progressStateTV.text = "진행중"
             progressStateTV.setTextColor(context.getColor(R.color.green))
         }
+
+
     }
 }
