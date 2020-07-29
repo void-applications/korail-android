@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
     private fun setListener() {
         chatIB.setOnClickListener(this)
         culturalFacilitiesIB.setOnClickListener(this)
-        lostAndFoundIB.setOnClickListener(this)
+        //lostAndFoundIB.setOnClickListener(this)
         eventIB.setOnClickListener(this)
         bottomNavigation.setOnNavigationItemSelectedListener(this) // 바텀 네비게이션 리스너
     }
@@ -62,7 +62,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
             }
 
             R.id.culturalFacilitiesIB -> {
-                val toEventList = Intent(this, CulturalFacilitiesListActivity::class.java)
+                val toEventList = Intent(this, CulturalFacilitiesDetailActivity::class.java)
+                toEventList.putExtra("id","19");
                 startActivity(toEventList)
             }
 
@@ -71,10 +72,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
                 startActivity(toEvent)
             }
 
-            R.id.lostAndFoundIB -> {
+            /*R.id.lostAndFoundIB -> {
                 val toLostAndFound = Intent(this, lostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
-            }
+            }*/
         }
     }
 }
