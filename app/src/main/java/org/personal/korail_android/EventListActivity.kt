@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_event_list.*
 import kotlinx.android.synthetic.main.activity_event_list.bottomNavigation
 import kotlinx.android.synthetic.main.activity_event_list.clearSearchInputIB
 import kotlinx.android.synthetic.main.activity_event_list.searchStationET
-import kotlinx.android.synthetic.main.activity_home.*
 import org.personal.korail_android.adapter.EventAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_EVENT_LIST
 import org.personal.korail_android.interfaces.HTTPConnectionListener
@@ -99,7 +98,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, lostAndFoundSearch::class.java)
+                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }

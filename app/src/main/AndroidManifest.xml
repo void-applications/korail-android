@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,16 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WriteReviewActivity"/>
+        <activity android:name=".LostAndFoundFourth"></activity>
+        <activity android:name=".LostAndFoundStepThird" />
+        <activity android:name=".LostAndFoundSecond" />
+        <activity android:name=".LostAndFoundStepFirst" />
+        <activity android:name=".WriteReviewActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyALQloDgddqjwIowz992BWzVc1N6Ji0a8g" />
-<!--        <activity android:name=".ShowPlace"></activity>-->
+            android:value="AIzaSyALQloDgddqjwIowz992BWzVc1N6Ji0a8g" /> <!-- <activity android:name=".ShowPlace"></activity> -->
         <activity android:name=".scheduleStaionSearch" />
         <activity android:name=".scheduleStationInfo" />
-        <activity android:name=".lostAndFoundSearch" />
+        <activity android:name=".LostAndFoundSearch" />
         <activity android:name=".lostAndFoundCallNLocation" />
-        <activity android:name=".lostAndFoundStep" />
+        <activity android:name=".LostAndFoundStepMain" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".EventDetailActivity" />
