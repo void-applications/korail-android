@@ -48,4 +48,7 @@ dependencies {
     //구글 맵  추가
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    //슬라이드 추가
+    implementation 'me.relex:circleindicator:1.2.2'
+
 }
