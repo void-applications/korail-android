@@ -34,16 +34,24 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.i(TAG, "onMessageReceived: ${remoteMessage.data["message"]}")
         Log.i(TAG, "onMessageReceived: ${remoteMessage.data["senderId"]}")
-        val senderId = parseInt(remoteMessage.data["senderId"]!!)
-        val message = remoteMessage.data["message"]
-        setLocalBroadcast(senderId, message)
+
+        setLocalBroadcast(remoteMessage.data)
     }
 
-    private fun setLocalBroadcast(senderId: Int, message: String?) {
+    // 채팅 액티비티로 전송하는 데이터
+    private fun setLocalBroadcast(fcmData: Map<String, String>) {
+        val station = fcmData["station"]
+        val senderId = parseInt(fcmData["senderId"]!!)
+        val senderName = fcmData["senderName"]
+        val message = fcmData["message"]
+        val messageTime = fcmData["messageTime"]
         val toChat = Intent().apply {
             action = ACTION_RECEIVE_CHAT
+            putExtra("station", station)
             putExtra("senderId", senderId)
+            putExtra("senderName", senderName)
             putExtra("message", message)
+            putExtra("messageTime", messageTime)
         }
         LocalBroadcastManager.getInstance(this).sendBroadcast(toChat)
     }
