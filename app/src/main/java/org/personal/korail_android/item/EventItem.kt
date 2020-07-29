@@ -3,8 +3,18 @@ package org.personal.korail_android.item
 import android.os.Parcel
 import android.os.Parcelable
 
-data class EventItem(var locationImage: Int, val performer: String?, val content: String?, val location: String?, val start_time: String?, val end_time: String?, var progressState:String?) :Parcelable {
+data class EventItem(
+    val id: Int?,
+    var locationImage: Int,
+    val performer: String?,
+    val content: String?,
+    val location: String?,
+    val start_time: String?,
+    val end_time: String?,
+    var progressState: String?
+) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
@@ -15,6 +25,7 @@ data class EventItem(var locationImage: Int, val performer: String?, val content
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(id)
         parcel.writeInt(locationImage)
         parcel.writeString(performer)
         parcel.writeString(content)
@@ -37,5 +48,4 @@ data class EventItem(var locationImage: Int, val performer: String?, val content
             return arrayOfNulls(size)
         }
     }
-
 }
