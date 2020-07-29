@@ -85,20 +85,20 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.home -> {
-                val toEvent  = Intent(this, HomeActivity::class.java)
+                val toEvent = Intent(this, HomeActivity::class.java)
                 startActivity(toEvent)
             }
-            R.id.chat ->   {
-                val toChat  = Intent(this, ChatListActivity::class.java)
+            R.id.chat -> {
+                val toChat = Intent(this, ChatListActivity::class.java)
                 startActivity(toChat)
             }
             R.id.culturalFacilities -> {
-                val toCulturalFacilities  = Intent(this, CulturalFacilitiesListActivity::class.java)
+                val toCulturalFacilities = Intent(this, CulturalFacilitiesListActivity::class.java)
                 startActivity(toCulturalFacilities)
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }
@@ -114,8 +114,10 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     //TODO : eventItem 마무리 하기
     override fun onItemClick(view: View?, itemPosition: Int) {
         val eventItem = getSelectedStation(itemPosition)
+        if (eventItem.progressState == "진행") {
 
-        val toEventDetail = Intent(this, EventDetailActivity::class.java)
+            val toEventDetail = Intent(this, EventDetailActivity::class.java)
+        }
     }
 
     override fun onItemLongClick(view: View?, itemPosition: Int) {
