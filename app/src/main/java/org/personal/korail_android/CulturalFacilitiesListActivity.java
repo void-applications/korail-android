@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -163,7 +162,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
                 break;
 
             case R.id.lostAndFound:
-                Intent toLostAndFound = new Intent(this, lostAndFoundSearch.class);
+                Intent toLostAndFound = new Intent(this, LostAndFoundSearch.class);
                 startActivity(toLostAndFound);
                 break;
         }

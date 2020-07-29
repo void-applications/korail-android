@@ -45,7 +45,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, lostAndFoundSearch::class.java)
+                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }
@@ -71,7 +71,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
                 val toEvent = Intent(this, EventListActivity::class.java)
                 startActivity(toEvent)
             }
-
             /*R.id.lostAndFoundIB -> {
                 val toLostAndFound = Intent(this, lostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
