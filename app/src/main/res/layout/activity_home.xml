@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <!--    Header-->
     <TextView
         android:id="@+id/headerTV"
         android:layout_width="match_parent"
@@ -22,115 +21,138 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/culturalFacilitiesIB"
-        android:layout_width="150dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/shape_rounded_btn"
-        android:backgroundTint="@color/homeBtn"
-        app:layout_constraintBottom_toTopOf="@id/culturalFacilitiesTV"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/lostAndFoundIB"
-        app:layout_constraintTop_toBottomOf="@id/headerTV" />
-
-    <TextView
-        android:id="@+id/culturalFacilitiesTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="문화시설"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/lostAndFoundTV"
-        app:layout_constraintLeft_toLeftOf="@id/culturalFacilitiesIB"
-        app:layout_constraintRight_toRightOf="@id/culturalFacilitiesIB"
-        app:layout_constraintTop_toBottomOf="@id/culturalFacilitiesIB" />
-
-    <ImageButton
-        android:id="@+id/lostAndFoundIB"
-        android:layout_width="150dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/shape_rounded_btn"
-        android:backgroundTint="@color/homeBtn"
-        app:layout_constraintBottom_toTopOf="@id/lostAndFoundTV"
-        app:layout_constraintLeft_toRightOf="@id/culturalFacilitiesIB"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerTV" />
-
-    <TextView
-        android:id="@+id/lostAndFoundTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="유실물 도우미"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/culturalFacilitiesTV"
-        app:layout_constraintLeft_toLeftOf="@id/lostAndFoundIB"
-        app:layout_constraintRight_toRightOf="@id/lostAndFoundIB"
-        app:layout_constraintTop_toBottomOf="@id/lostAndFoundIB" />
-
-    <ImageButton
-        android:id="@+id/eventIB"
-        android:layout_width="150dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/shape_rounded_btn"
-        android:backgroundTint="@color/homeBtn"
-        app:layout_constraintBottom_toTopOf="@id/chatTV"
-        app:layout_constraintLeft_toLeftOf="@id/culturalFacilitiesIB"
-        app:layout_constraintRight_toRightOf="@id/culturalFacilitiesIB"
-        app:layout_constraintTop_toBottomOf="@id/culturalFacilitiesTV" />
-
-    <TextView
-        android:id="@+id/eventIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="지하철 공연"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/eventIB"
-        app:layout_constraintRight_toRightOf="@id/eventIB"
-        app:layout_constraintTop_toBottomOf="@id/eventIB" />
-
-    <ImageButton
-        android:id="@+id/chatIB"
-        android:layout_width="150dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/shape_rounded_btn"
-        android:backgroundTint="@color/homeBtn"
-        app:layout_constraintBottom_toTopOf="@id/chatTV"
-        app:layout_constraintLeft_toLeftOf="@id/lostAndFoundIB"
-        app:layout_constraintRight_toRightOf="@id/lostAndFoundIB"
-        app:layout_constraintTop_toBottomOf="@id/lostAndFoundTV" />
-
-    <TextView
-        android:id="@+id/chatTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="오픈 채팅"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/chatIB"
-        app:layout_constraintRight_toRightOf="@id/chatIB"
-        app:layout_constraintTop_toBottomOf="@id/chatIB" />
-
+    <!--    Header-->
     <!--    바텀 네비게이션-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerTV"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/thumbs_up"
+                app:layout_constraintRight_toLeftOf="@id/eventTV"
+                app:layout_constraintTop_toTopOf="@id/eventTV" />
+
+            <TextView
+                android:id="@+id/eventTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="8월 추천 지하철 공연"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/eventIB"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/eventIB"
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="50dp"
+                android:src="@drawable/home_event"
+                android:scaleType="fitStart"
+                android:background="@drawable/shape_rounded_btn"
+                android:backgroundTint="#c5e1a5"
+                app:layout_constraintBottom_toTopOf="@id/culturalFacilitiesTV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventTV" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/thumbs_up"
+                app:layout_constraintRight_toLeftOf="@id/culturalFacilitiesTV"
+                app:layout_constraintTop_toTopOf="@id/culturalFacilitiesTV" />
+
+            <TextView
+                android:id="@+id/culturalFacilitiesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="8월 추천 문화시설"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/culturalFacilitiesIB"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventIB" />
+
+            <ImageView
+                android:id="@+id/culturalFacilitiesIB"
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/home_facility"
+                android:scaleType="fitStart"
+                android:background="@drawable/shape_rounded_btn"
+                android:backgroundTint="#fff3e0"
+                app:layout_constraintBottom_toTopOf="@id/chatTV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+            </ImageView>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/thumbs_up"
+                app:layout_constraintRight_toLeftOf="@id/chatTV"
+                app:layout_constraintTop_toTopOf="@id/chatTV" />
+
+            <TextView
+                android:id="@+id/chatTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="가장 핫한 오픈채팅방"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/culturalFacilitiesIB" />
+
+            <ImageButton
+                android:id="@+id/chatIB"
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/shape_rounded_btn"
+                android:backgroundTint="#ffc4ff"
+                android:src="@drawable/home_chat"
+                android:scaleType="fitStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chatTV" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/green"
+        app:itemBackground="@color/main"
         app:itemTextColor="@drawable/navigation_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
