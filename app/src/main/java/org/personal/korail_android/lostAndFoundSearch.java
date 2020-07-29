@@ -1,21 +1,24 @@
 package org.personal.korail_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import org.personal.korail_android.background.OkHttp;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class lostAndFoundSearch extends AppCompatActivity {
+public class lostAndFoundSearch extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     EditText stationNameET;
     ImageView searchIV;
+    BottomNavigationView bottomNavigation;
     Handler handler;
     String result;
     String centerName;
@@ -31,6 +34,8 @@ public class lostAndFoundSearch extends AppCompatActivity {
 
         stationNameET = findViewById(R.id.searchStation);
         searchIV = findViewById(R.id.searchIV);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(this);
         handler = new Handler();
 
         handler=new Handler();
@@ -48,6 +53,39 @@ public class lostAndFoundSearch extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                Intent toHome = new  Intent(this, HomeActivity.class);
+                startActivity(toHome);
+                break;
+
+            case R.id.event:
+                Intent toEvent = new Intent(this, EventListActivity.class);
+                startActivity(toEvent);
+                break;
+
+            case R.id.chat:
+                Intent toChat  = new Intent(this, ChatListActivity.class);
+                startActivity(toChat);
+                break;
+
+            case R.id.culturalFacilities:
+                Intent toCulturalFacilities = new Intent(this, CulturalFacilitiesListActivity.class);
+                startActivity(toCulturalFacilities);
+                break;
+        }
+        overridePendingTransition(0, 0);
+        return true;
     }
 }
 
