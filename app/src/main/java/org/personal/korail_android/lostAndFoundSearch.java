@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.personal.korail_android.background.OkHttp;
 
@@ -23,6 +24,7 @@ public class lostAndFoundSearch extends AppCompatActivity {
     String TAG = "유실물 전화 액티비티";
 
     Intent searchIntent;
+    TextView questionTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,15 @@ public class lostAndFoundSearch extends AppCompatActivity {
 
         stationNameET = findViewById(R.id.searchStation);
         searchIV = findViewById(R.id.searchIV);
+        questionTV = findViewById(R.id.questionTV);
+
+        questionTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent questionIntent = new Intent(getApplicationContext(), lostAndFoundStep.class);
+                startActivity(questionIntent);
+            }
+        });
         handler = new Handler();
 
         handler=new Handler();
