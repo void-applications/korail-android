@@ -1,14 +1,12 @@
 package org.personal.korail_android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,7 +27,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
     ArrayList<FacilitiesItem> facilitiesItemArrayList;
     FacilitiesAdapter facilitiesAdapter;
     RecyclerView recyclerView;
-    GridLayoutManager gridLayoutManager;
+    LinearLayoutManager linearLayoutManager;
     String result;
     Handler handler;
     TextView resultTV;
@@ -52,8 +50,8 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
         handler = new Handler();
         facilitiesItemArrayList = new ArrayList<>();
         facilitiesAdapter = new FacilitiesAdapter(facilitiesItemArrayList, this);
-        gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(facilitiesAdapter);
 
         new Thread(new Runnable() {
@@ -119,8 +117,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
                         String floor = searchItem.getString("floor");
                         String location = searchItem.getString("location");
                         String equipment = searchItem.getString("equipment");
-                        int image=setImageView();
-                        FacilitiesItem facilitiesItem = new FacilitiesItem(id, lineName, stationName, floor, location, equipment,image);
+                        FacilitiesItem facilitiesItem = new FacilitiesItem(id, lineName, stationName, floor, location, equipment);
                         facilitiesItemArrayList.add(facilitiesItem);
                         facilitiesAdapter.notifyDataSetChanged();
 
@@ -132,25 +129,4 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity {
         });
     }
 
-    public int setImageView(){
-        int randomNumber=(int)(Math.random()*7);
-        switch (randomNumber){
-            case 0:
-                return R.drawable.pink_item;
-            case 1:
-                return R.drawable.yellow_item;
-            case 2:
-                return R.drawable.green_item;
-            case 3:
-                return R.drawable.purple_item;
-            case 4:
-                return R.drawable.mint_item;
-            case 5:
-                return R.drawable.skyblue_item;
-            case 6:
-                return R.drawable.blue_item;
-            default:
-                return R.drawable.pink_item;
-        }
-    }
 }
