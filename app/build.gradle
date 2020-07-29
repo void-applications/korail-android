@@ -41,4 +41,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.2.3'
     // 로띠 라이브러리 추가
     implementation "com.airbnb.android:lottie:3.4.0"
+    //구글 맵  추가
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }

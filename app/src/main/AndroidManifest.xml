@@ -14,12 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyALQloDgddqjwIowz992BWzVc1N6Ji0a8g" />
+<!--        <activity android:name=".ShowPlace"></activity>-->
         <activity android:name=".scheduleStaionSearch" />
         <activity android:name=".scheduleStationInfo" />
         <activity android:name=".lostAndFoundSearch" />
         <activity android:name=".lostAndFoundCallNLocation" />
         <activity android:name=".lostAndFoundStep" />
-        <activity android:name=".ChatListActivity"></activity>
+        <activity android:name=".ChatListActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".EventDetailActivity" />
         <activity android:name=".EventListActivity" />
@@ -27,7 +31,7 @@
         <activity android:name=".CulturalFacilitiesListActivity" />
         <activity android:name=".ScheduleActivity" />
         <activity android:name=".ChattingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ShowPlace">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
