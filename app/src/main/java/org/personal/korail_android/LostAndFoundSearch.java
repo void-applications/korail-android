@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +27,6 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
     String centerName;
     String centerNumber;
     String TAG = "유실물 전화 액티비티";
-
     Intent searchIntent;
     TextView questionTV;
 
@@ -35,10 +36,11 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
         setContentView(R.layout.activity_lost_and_found_search);
 
         stationNameET = findViewById(R.id.searchStation);
-        searchIV = findViewById(R.id.searchIV);
+        searchIV = findViewById(R.id.searchIconIB);
         bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(this);
         questionTV = findViewById(R.id.questionTV);
+
 
         questionTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +59,24 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
 
                 searchIntent = new Intent(getApplicationContext(), lostAndFoundCallNLocation.class);
                 searchIntent.putExtra("stationName", stationName);
-                Log.d(TAG, "인텐트로 보내는 결과값 확인 : "+ stationName);
+                Log.d(TAG, "인텐트로 보내는 결과값 확인 : " + stationName);
                 startActivity(searchIntent);
 
+            }
+        });
+
+        stationNameET.setOnKeyListener(new View.OnKeyListener() {
+
+
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+
+                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+
+                    searchIV.performClick();
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -74,7 +91,7 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                Intent toHome = new  Intent(this, HomeActivity.class);
+                Intent toHome = new Intent(this, HomeActivity.class);
                 startActivity(toHome);
                 break;
 
@@ -84,7 +101,7 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
                 break;
 
             case R.id.chat:
-                Intent toChat  = new Intent(this, ChatListActivity.class);
+                Intent toChat = new Intent(this, ChatListActivity.class);
                 startActivity(toChat);
                 break;
 

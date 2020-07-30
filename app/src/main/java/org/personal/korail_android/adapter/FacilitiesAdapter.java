@@ -97,4 +97,9 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
 
         }
     }
+
+    public void  filterList(ArrayList<FacilitiesItem> filteredList) {
+        facilitiesItemArrayList = filteredList;
+        notifyDataSetChanged();
+    }
 }
