@@ -3,4 +3,5 @@
     <string name="firebaseMessagingToken">firebaseMessagingToken</string>
     <string name="isTokenUpdated">isTokenUpdated</string>
     <string name="tokenId">tokenId</string>
+    <string name="chatData">chatData</string>
 </resources>
