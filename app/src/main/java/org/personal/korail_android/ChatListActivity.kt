@@ -97,7 +97,7 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
         }
 
         // 채팅 방 더미 데이터 넣는 구간
-        val dummyStationTitles = arrayOf("사당역", "노원역", "이수역", "선릉역", "동대문역사문화공원역")
+        val dummyStationTitles = arrayOf("대전역", "사당역", "노원역", "이수역", "선릉역", "동대문역사문화공원역")
         dummyStationTitles.forEach {
 
             val chatRoomItem: ChatRoomItem = if (storedUnreadMessageHash[it] == null) {
