@@ -48,7 +48,7 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
         }
         //장비가 있을 때
         else{
-            holder.equipmentTV.setText("장비 "+facilitiesItemArrayList.get(position).getEquipment());
+            holder.equipmentTV.setText("장비 : "+facilitiesItemArrayList.get(position).getEquipment());
         }
 
         //상세 위치가 없을 때

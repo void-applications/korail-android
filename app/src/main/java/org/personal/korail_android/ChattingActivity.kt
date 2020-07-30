@@ -89,6 +89,8 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
         chattingBoxRV.setHasFixedSize(true)
         chattingBoxRV.layoutManager = layoutManager
         chattingBoxRV.adapter = chatAdapter
+
+        chattingBoxRV.scrollToPosition(chatAdapter.itemCount - 1)
     }
 
     private fun handleStoreChatMessages() {
