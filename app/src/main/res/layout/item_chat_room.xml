@@ -18,22 +18,31 @@
         android:id="@+id/titleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="채팅 방 이름"
         android:textSize="20sp"
-        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@id/roomImageIV"
         app:layout_constraintLeft_toRightOf="@id/roomImageIV"
         app:layout_constraintTop_toTopOf="@id/roomImageIV" />
 
     <TextView
-        android:id="@+id/participantCountTV"
+        android:id="@+id/unReadMessageCountTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:text="참여 인원 *명"
-        android:textSize="12sp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_rounded_btn"
+        android:backgroundTint="@color/red"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/roomImageIV"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTV" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

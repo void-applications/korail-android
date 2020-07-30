@@ -13,11 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".EventWriteReviewActivity"/>
-        <activity android:name=".LostAndFoundStepMain"/>
-        <activity android:name=".WriteReviewActivity"/>
-
+        <!-- <activity android:name=".LostAndFoundStepFourth"></activity> -->
+        <activity android:name=".EventWriteReviewActivity" /> <!-- <activity android:name=".LostAndFoundStepThird" /> -->
+        <!-- <activity android:name=".LostAndFoundStepSecond" /> -->
+        <!-- <activity android:name=".LostAndFoundStepFirst" /> -->
+        <activity android:name=".LostAndFoundStepMain" />
+        <activity android:name=".WriteReviewActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyALQloDgddqjwIowz992BWzVc1N6Ji0a8g" /> <!-- <activity android:name=".ShowPlace"></activity> -->

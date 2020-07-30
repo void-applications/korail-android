@@ -5,7 +5,11 @@ import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.personal.korail_android.R
+import org.personal.korail_android.item.ChatData
+import org.personal.korail_android.item.LocalStoredChatRoom
 import org.personal.korail_android.utils.SharedPreferenceHelper
 import java.lang.Integer.parseInt
 
@@ -35,16 +39,19 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.i(TAG, "onMessageReceived: ${remoteMessage.data["message"]}")
         Log.i(TAG, "onMessageReceived: ${remoteMessage.data["senderId"]}")
 
-        setLocalBroadcast(remoteMessage.data)
+        handleMessage(remoteMessage.data)
     }
 
     // 채팅 액티비티로 전송하는 데이터
-    private fun setLocalBroadcast(fcmData: Map<String, String>) {
+    private fun handleMessage(fcmData: Map<String, String>) {
         val station = fcmData["station"]
         val senderId = parseInt(fcmData["senderId"]!!)
         val senderName = fcmData["senderName"]
         val message = fcmData["message"]
         val messageTime = fcmData["messageTime"]
+        val chatMessage = ChatData(senderId, senderName, message, messageTime) // 로컬에 저장할 메시지
+
+        // 로컬 브로드캐스트에 메시지 전송 -> 채팅 액티비티에서 메시지 받음
         val toChat = Intent().apply {
             action = ACTION_RECEIVE_CHAT
             putExtra("station", station)
@@ -54,6 +61,91 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             putExtra("messageTime", messageTime)
         }
         LocalBroadcastManager.getInstance(this).sendBroadcast(toChat)
+
+        Log.i(TAG, "handleMessage: $chatMessage")
+        storeChatMessage(station!!, chatMessage)
+    }
+
+//    station=사당역, sender_id=9, senderName=ff, message=sdf, message_time=오전 12:29
+
+    private fun storeChatMessage(station: String, chatMessage: ChatData) {
+        val gson = Gson()
+        val myFirebaseTokenId = SharedPreferenceHelper.getInt(this, getText(R.string.tokenId).toString())
+        val isMyMessage = isMyMessage(myFirebaseTokenId, chatMessage.sender_id!!)
+        val jsonChatRoomList = SharedPreferenceHelper.getString(this, getText(R.string.chatData).toString())
+        // station : 역이름 , 읽었는지 안읽었는지,chattingList
+        val chatRoomList = gson.fromJson<ArrayList<LocalStoredChatRoom>>(jsonChatRoomList, object : TypeToken<ArrayList<LocalStoredChatRoom>>() {}.type)
+        var isUploaded = false
+
+        Log.i(TAG, "storeChatMessage: $myFirebaseTokenId")
+        if (isMyMessage != null) {
+            // 쉐어드에 저장이 되어 있을 때
+            if (chatRoomList != null) {
+                for (i in 0..chatRoomList.size - 1) {
+                    val localChatRoom = chatRoomList[i]
+
+                    if (localChatRoom.station == station) {
+                        Log.i(TAG, "storeChatMessage: 같은 역")
+
+                        if (!isMyMessage) localChatRoom.unReadChatCount += 1
+                        Log.i(TAG, "storeChatMessage: ${localChatRoom.unReadChatCount}")
+                        localChatRoom.chatMessageList.add(chatMessage)
+                        isUploaded = true
+                        break
+                    }
+                }
+
+                if (!isUploaded) {
+                    Log.i(TAG, "storeChatMessage: 같은 역이 없음")
+                    if (!isMyMessage) {
+                        val chatMessageList = ArrayList<ChatData>()
+                        chatMessageList.add(chatMessage)
+
+                        val newChatRoomSet = if (isMyMessage) {
+                            LocalStoredChatRoom(station, 0, chatMessageList)
+                        } else {
+                            LocalStoredChatRoom(station, 1, chatMessageList)
+                        }
+                        chatRoomList.add(newChatRoomSet)
+                    }
+                }
+                Log.i(TAG, "storeChatMessage: ${chatRoomList}")
+                storeChatInPreference(gson, chatRoomList)
+
+                // 쉐어드에 저장이 안되어 있을 때
+            } else {
+                Log.i(TAG, "storeChatMessage: 쉐어드에 아예 저장이 되어있지 않을 떄")
+
+                val newChatRoomList = ArrayList<LocalStoredChatRoom>()
+                val chatMessageList = ArrayList<ChatData>()
+                chatMessageList.add(chatMessage)
+
+                val newChatRoomSet = if (isMyMessage) {
+                    LocalStoredChatRoom(station, 0, chatMessageList)
+                } else {
+                    LocalStoredChatRoom(station, 1, chatMessageList)
+                }
+
+                newChatRoomList.add(newChatRoomSet)
+
+                storeChatInPreference(gson, newChatRoomList)
+            }
+        }
+    }
+
+    private fun storeChatInPreference(gson: Gson, chatRoomList: ArrayList<LocalStoredChatRoom>) {
+        val jsonNewChatRoomSet = gson.toJson(chatRoomList)
+        SharedPreferenceHelper.setString(this, getText(R.string.chatData).toString(), jsonNewChatRoomSet)
+    }
+
+    private fun isMyMessage(myFirebaseTokenId: Int?, senderId: Int): Boolean? {
+        var isMyMessage: Boolean? = null
+
+        if (myFirebaseTokenId != null) {
+            isMyMessage = myFirebaseTokenId == senderId
+        }
+
+        return isMyMessage
     }
 }
 
