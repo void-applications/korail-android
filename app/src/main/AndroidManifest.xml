@@ -14,6 +14,8 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".FacilitiesActivity"></activity>
+        <activity android:name=".ToiletActivity"></activity>
+        <activity android:name=".ServiceCenterActivity" />
         <activity android:name=".EventDetailActivity" /> <!-- <activity android:name=".LostAndFoundStepFourth"></activity> -->
         <activity android:name=".EventWriteReviewActivity" /> <!-- <activity android:name=".LostAndFoundStepThird" /> -->
         <!-- <activity android:name=".LostAndFoundStepSecond" /> -->

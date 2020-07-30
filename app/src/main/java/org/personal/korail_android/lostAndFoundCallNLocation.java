@@ -45,7 +45,6 @@ public class lostAndFoundCallNLocation extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
