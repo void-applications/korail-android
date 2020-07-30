@@ -101,7 +101,7 @@
         android:src="@drawable/question"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/questionTV"
         app:layout_constraintTop_toBottomOf="@+id/searchStation" />
 
     <TextView
@@ -113,7 +113,7 @@
         android:textColor="@color/black"
         android:text="유실물 처리 절차가 궁금하신가요?"
         app:layout_constraintTop_toTopOf="@id/questionIV"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/questionIV"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/questionIV" />
 

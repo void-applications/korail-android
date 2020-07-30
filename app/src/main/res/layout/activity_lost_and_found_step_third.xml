@@ -11,11 +11,13 @@
         android:id="@+id/top"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/lostthird"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -23,52 +25,51 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="136dp"
         android:gravity="center"
         android:padding="10dp"
         android:text="3단계"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginLeft="60dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/firstImage"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="116dp"
         android:gravity="center"
         android:padding="10dp"
         android:text="유실물 센터"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintLeft_toRightOf="@+id/title"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/firstExplain"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/circleborder"
         android:gravity="center"
         android:padding="20dp"
-        android:textSize="20sp"
         android:text="1~7일간 보관, 고객 인도              (본인 미 인도 시 유실물 센터 인계)"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first" />
-
-
 
     <ImageView
         android:id="@+id/nextIV"
