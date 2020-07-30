@@ -94,14 +94,14 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
                 val toChat = Intent(this, ChatListActivity::class.java)
                 startActivity(toChat)
             }
-            R.id.culturalFacilities -> {
-                val toCulturalFacilities = Intent(this, CulturalFacilitiesListActivity::class.java)
+            R.id.lostAndFound -> {
+                val toCulturalFacilities = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toCulturalFacilities)
             }
 
-            R.id.lostAndFound -> {
-                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
-                startActivity(toLostAndFound)
+            R.id.facilities -> {
+                val toFacilities = Intent(this, FacilitiesActivity::class.java)
+                startActivity(toFacilities)
             }
         }
         overridePendingTransition(0, 0)
