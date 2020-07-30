@@ -86,6 +86,7 @@ public class CulturalFacilitiesDetailActivity extends AppCompatActivity {
         super.onStart();
 
         getReview();
+        reviewRB.setRating(0);
     }
 
     public void displayFacility(final String result) {
