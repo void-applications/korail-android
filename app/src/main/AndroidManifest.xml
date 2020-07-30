@@ -14,14 +14,10 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".LostAndFoundStepFourth"></activity>
-        <activity android:name=".EventWriteReviewActivity"></activity>
-        <activity android:name=".LostAndFoundStepThird" />
-        <activity android:name=".LostAndFoundStepSecond" />
-        <activity android:name=".LostAndFoundStepFirst" />
-        <activity android:name=".LostAndFoundStepMain" />
-
-        <activity android:name=".WriteReviewActivity" />
+        <activity android:name=".EventWriteReviewActivity"/>
+        <activity android:name=".LostAndFoundStepMain"/>
+        <activity android:name=".SplashActivity"/>
+        <activity android:name=".WriteReviewActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
