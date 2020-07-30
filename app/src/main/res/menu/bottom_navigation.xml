@@ -3,26 +3,26 @@
 
     <item
         android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_home_run"
         android:title="홈" />
 
     <item
         android:id="@+id/event"
-        android:icon="@drawable/ic_baseline_event_note_24"
+        android:icon="@drawable/ic_singer"
         android:title="공연" />
 
     <item
         android:id="@+id/chat"
-        android:icon="@drawable/ic_baseline_chat_24"
+        android:icon="@drawable/ic_message"
         android:title="채팅" />
 
     <item
         android:id="@+id/culturalFacilities"
-        android:icon="@drawable/ic_baseline_train_24"
+        android:icon="@drawable/ic_concert"
         android:title="문화시설" />
 
     <item
         android:id="@+id/lostAndFound"
-        android:icon="@drawable/ic_baseline_train_24"
+        android:icon="@drawable/ic_lost"
         android:title="유실물" />
 </menu>
