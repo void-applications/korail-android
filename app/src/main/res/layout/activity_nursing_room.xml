@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ServiceCenterActivity">
+    tools:context=".NursingRoomActivity">
 
     <TextView
         android:id="@+id/HeaderTV"
@@ -14,7 +14,7 @@
         android:gravity="center|start"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="고객센터"
+        android:text="수유실"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -57,7 +57,7 @@
 
             <ImageView
                 android:id="@+id/locationIV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:src="@drawable/ic_baseline_train_24"
                 app:layout_constraintBottom_toTopOf="@id/info"
@@ -67,7 +67,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/info"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#e5e5e5"
                 android:padding="5dp"
@@ -77,53 +77,127 @@
 
 
                 <ImageView
-                    android:id="@+id/centerLocationIV"
+                    android:id="@+id/nursingRoomLocationIV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_location_on_24"
+                    android:background="@drawable/ic_baseline_person_24"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/centerLocationTV"
+                    android:id="@+id/nursingRoomLocationTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     android:text="위치"
-                    app:layout_constraintBottom_toBottomOf="@id/centerLocationIV"
-                    app:layout_constraintLeft_toRightOf="@id/centerLocationIV"
-                    app:layout_constraintTop_toTopOf="@id/centerLocationIV" />
-
-
+                    app:layout_constraintBottom_toBottomOf="@id/nursingRoomLocationIV"
+                    app:layout_constraintLeft_toRightOf="@id/nursingRoomLocationIV"
+                    app:layout_constraintTop_toTopOf="@id/nursingRoomLocationIV" />
 
                 <ImageView
-                    android:id="@+id/startTimeIV"
+                    android:id="@+id/babyIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/ic_baseline_import_contacts_24"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nursingRoomLocationIV" />
+
+                <TextView
+                    android:id="@+id/babyTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:text="유아용침대개"
+                    app:layout_constraintBottom_toBottomOf="@id/babyIV"
+                    app:layout_constraintLeft_toRightOf="@id/babyIV"
+                    app:layout_constraintTop_toTopOf="@id/babyIV" />
+
+                <ImageView
+                    android:id="@+id/sofaIV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
                     android:background="@drawable/hours_of_use"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/centerLocationIV" />
+                    app:layout_constraintTop_toBottomOf="@id/babyIV" />
 
                 <TextView
-                    android:id="@+id/startTimeTV"
+                    android:id="@+id/sofaTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
-                    android:text="이용시간"
-                    app:layout_constraintBottom_toBottomOf="@id/startTimeIV"
-                    app:layout_constraintLeft_toRightOf="@id/startTimeIV"
-                    app:layout_constraintTop_toTopOf="@id/startTimeIV" />
+                    android:text="소파개수"
+                    app:layout_constraintBottom_toBottomOf="@id/sofaIV"
+                    app:layout_constraintLeft_toRightOf="@id/sofaIV"
+                    app:layout_constraintTop_toTopOf="@id/sofaIV" />
+
+                <ImageView
+                    android:id="@+id/microwaveIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/hours_of_use"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sofaIV" />
+
+                <TextView
+                    android:id="@+id/microwaveTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:text="전자렌지개수"
+                    app:layout_constraintBottom_toBottomOf="@id/microwaveIV"
+                    app:layout_constraintLeft_toRightOf="@id/microwaveIV"
+                    app:layout_constraintTop_toTopOf="@id/microwaveIV" />
+
+                <ImageView
+                    android:id="@+id/washIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/hours_of_use"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/microwaveIV" />
+
+                <TextView
+                    android:id="@+id/washTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:text="간이세면대개수"
+                    app:layout_constraintBottom_toBottomOf="@id/washIV"
+                    app:layout_constraintLeft_toRightOf="@id/washIV"
+                    app:layout_constraintTop_toTopOf="@id/washIV" />
+
+                <ImageView
+                    android:id="@+id/timeIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/hours_of_use"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/washIV" />
+
+                <TextView
+                    android:id="@+id/timeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:text="이용가능시간"
+                    app:layout_constraintBottom_toBottomOf="@id/timeIV"
+                    app:layout_constraintLeft_toRightOf="@id/timeIV"
+                    app:layout_constraintTop_toTopOf="@id/timeIV" />
 
                 <ImageView
                     android:id="@+id/numberIV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_local_phone_24"
+                    android:background="@drawable/hours_of_use"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/startTimeIV" />
+                    app:layout_constraintTop_toBottomOf="@id/timeIV" />
 
                 <TextView
                     android:id="@+id/numberTV"
@@ -134,6 +208,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/numberIV"
                     app:layout_constraintLeft_toRightOf="@id/numberIV"
                     app:layout_constraintTop_toTopOf="@id/numberIV" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
