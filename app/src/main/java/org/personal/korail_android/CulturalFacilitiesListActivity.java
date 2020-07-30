@@ -13,7 +13,6 @@ import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -108,7 +107,7 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        bottomNavigation.setSelectedItemId(R.id.culturalFacilities);
+        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
     }
 
     public void searchFilter(String searchText) {
@@ -178,9 +177,9 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
                 startActivity(toChat);
                 break;
 
-            case R.id.lostAndFound:
-                Intent toLostAndFound = new Intent(this, LostAndFoundSearch.class);
-                startActivity(toLostAndFound);
+            case R.id.facilities:
+                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
+                startActivity(toFacilities);
                 break;
         }
         overridePendingTransition(0, 0);
