@@ -1,14 +1,13 @@
 package org.personal.korail_android;
 
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-class LostAndFoundStepSecond extends Fragment {
+import androidx.fragment.app.Fragment;
 
+public class LostAndFoundStepSecond extends Fragment {
 
     private String title;
     private int page;
@@ -24,14 +23,12 @@ class LostAndFoundStepSecond extends Fragment {
 
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("someInt", 0);
         title = getArguments().getString("someTitle");
     }
-
 
     // Inflate the view for the fragment based on layout XML
     @Override

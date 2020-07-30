@@ -48,6 +48,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
 
     override fun onStart() {
         super.onStart()
+        eventList.clear()
         startBoundService()
     }
 
@@ -85,22 +86,22 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.home -> {
-                val toEvent  = Intent(this, HomeActivity::class.java)
+                val toEvent = Intent(this, HomeActivity::class.java)
                 startActivity(toEvent)
             }
-            R.id.chat ->   {
-                val toChat  = Intent(this, ChatListActivity::class.java)
+            R.id.chat -> {
+                val toChat = Intent(this, ChatListActivity::class.java)
                 startActivity(toChat)
             }
             R.id.culturalFacilities -> {
-                val toCulturalFacilities  = Intent(this, CulturalFacilitiesListActivity::class.java)
+                val toCulturalFacilities = Intent(this, CulturalFacilitiesListActivity::class.java)
                 startActivity(toCulturalFacilities)
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
-            }
+            } 
         }
         overridePendingTransition(0, 0)
         return true
@@ -114,8 +115,14 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     //TODO : eventItem 마무리 하기
     override fun onItemClick(view: View?, itemPosition: Int) {
         val eventItem = getSelectedStation(itemPosition)
-
-        val toEventDetail = Intent(this, EventDetailActivity::class.java)
+        if (eventItem.progressState == "공연 예정") {
+            Log.i(TAG, "onItemClick: 공연 예정")
+        } else {
+            val toEventDetail = Intent(this, EventDetailActivity::class.java).apply {
+                putExtra("eventItem", eventItem)
+            }
+            startActivity(toEventDetail)
+        }
     }
 
     override fun onItemLongClick(view: View?, itemPosition: Int) {

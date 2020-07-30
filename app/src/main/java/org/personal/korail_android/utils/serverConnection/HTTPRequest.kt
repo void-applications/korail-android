@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.personal.korail_android.item.EventItem
+import org.personal.korail_android.item.EventReviewItem
 
 class HTTPRequest(serverPage: String) : HTTPOutPut {
 
@@ -33,6 +34,18 @@ class HTTPRequest(serverPage: String) : HTTPOutPut {
         val gson = Gson()
 
         return gson.fromJson(jsonString, object : TypeToken<ArrayList<EventItem>>() {}.type)
+    }
+
+    override fun getEventReviewList(): ArrayList<EventReviewItem>? {
+        val jsonString: String = hTTPConnection.getRequest()
+        val gson = Gson()
+
+        Log.i(TAG, "getEventReviewList: $jsonString")
+        return if (hTTPConnection.responseCode == 200) {
+            gson.fromJson(jsonString, object : TypeToken<ArrayList<EventReviewItem>>() {}.type)
+        } else {
+            null
+        }
     }
 
     //------------------ POST 관련 메소드 모음 ------------------

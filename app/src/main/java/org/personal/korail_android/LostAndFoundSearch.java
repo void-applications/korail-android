@@ -1,8 +1,5 @@
 package org.personal.korail_android;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -48,8 +48,6 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
             }
         });
         handler = new Handler();
-
-        handler=new Handler();
 
         //돋보기 아이콘 클릭시 유실물 센터 위치 및 전화 걸기 액티비티로 전환, 서버에 역 이름 전송
         searchIV.setOnClickListener(new View.OnClickListener() {
