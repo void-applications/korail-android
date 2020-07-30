@@ -156,45 +156,18 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
                 service as HTTPConnectionService.LocalBinder
             httpConnectionService = binder.getService()!!
             httpConnectionService.setOnHttpRespondListener(this@ChattingActivity)
-            uploadFirebaseToken()
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
             Log.i(TAG, "바운드 서비스 연결 종료")
-        }
-
-        // token 업로드 하는 메소드 : 이미 업로드가 되어있다면 동작 X
-        private fun uploadFirebaseToken() {
-            // 토큰 값 바뀌었는지 확인하는 변수
-            val isTokenUpdated = SharedPreferenceHelper.getBoolean(this@ChattingActivity, getText(R.string.isTokenUpdated).toString())
-
-            if (!isTokenUpdated) {
-                Log.i(TAG, "test: not working?")
-                val token = SharedPreferenceHelper.getString(this@ChattingActivity, getText(R.string.firebaseMessagingToken).toString())
-                val postData = JSONObject()
-                postData.put("what", "uploadToken")
-                postData.put("token", token)
-
-                httpConnectionService.serverPostRequest(serverPage, postData.toString(), REQUEST_SIMPLE_POST_METHOD, UPLOAD_FIREBASE_TOKEN)
-            }
         }
     }
 
     // http 통신 결과를 handling 하는 인터페이스 메소드
     override fun onHttpRespond(responseData: HashMap<*, *>) {
         when (responseData["whichRespond"] as Int) {
-            UPLOAD_FIREBASE_TOKEN -> {
-                Log.i(TAG, "onHttpRespond: ${responseData["respondData"]}")
-                val tokenTableId = parseInt(responseData["respondData"].toString()) // token 테이블 id 값
-
-                // 데이터 베이스에 저장된 테이블 id 저장하기 -> 각 디바이스의 id 값으로 사용 (채팅 시 본인 채팅과 상대방 채팅 구분하기 위해)
-                SharedPreferenceHelper.setInt(this, getText(R.string.tokenId).toString(), tokenTableId)
-                // FCM 토큰 값 업데이트 됬다는 것을 확인하는 변수 저장
-                SharedPreferenceHelper.setBoolean(this, getText(R.string.isTokenUpdated).toString(), true)
-            }
-
             SEND_MESSAGE -> {
-
+//                Log.i(TAG, "onHttpRespond: ${responseData["respondData"]}")
             }
         }
     }
