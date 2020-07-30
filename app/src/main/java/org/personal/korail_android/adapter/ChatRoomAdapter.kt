@@ -20,7 +20,7 @@ class ChatRoomAdapter(private val context: Context, private var chatRoomList: Ar
 
 
         val titleTV: TextView = itemView.findViewById(R.id.titleTV)
-        val participantCountTV: TextView = itemView.findViewById(R.id.participantCountTV)
+        val unReadMessageCountTV: TextView = itemView.findViewById(R.id.unReadMessageCountTV)
 
         init {
             itemView.setOnClickListener(this)
@@ -57,7 +57,15 @@ class ChatRoomAdapter(private val context: Context, private var chatRoomList: Ar
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chatRoomItem: ChatRoomItem = chatRoomList[position]
         holder.titleTV.text = chatRoomItem.title
-        holder.participantCountTV.text = String.format("참여인원 %s명", chatRoomItem.participants)
+
+        if (chatRoomItem.unReadMessage == 0) {
+
+            holder.unReadMessageCountTV.visibility = View.GONE
+            holder.unReadMessageCountTV.text = "0"
+        } else {
+            holder.unReadMessageCountTV.visibility = View.VISIBLE
+            holder.unReadMessageCountTV.text = chatRoomItem.unReadMessage.toString()
+        }
     }
 
     fun filterList(filteredChatRoomList: ArrayList<ChatRoomItem>) {

@@ -8,16 +8,18 @@ import android.util.Log
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_chatting.*
 import org.json.JSONObject
 import org.personal.korail_android.interfaces.HTTPConnectionListener
 import org.personal.korail_android.adapter.ChatAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_SIMPLE_POST_METHOD
 import org.personal.korail_android.item.ChatData
+import org.personal.korail_android.item.LocalStoredChatRoom
 import org.personal.korail_android.service.HTTPConnectionService
 import org.personal.korail_android.service.MyFirebaseMessagingService.Companion.ACTION_RECEIVE_CHAT
 import org.personal.korail_android.utils.SharedPreferenceHelper
-import java.lang.Integer.parseInt
 
 class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnectionListener {
 
@@ -80,11 +82,29 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
     }
 
     private fun buildRecyclerView() {
+        handleStoreChatMessages()
+
         val layoutManager = LinearLayoutManager(this)
 
         chattingBoxRV.setHasFixedSize(true)
         chattingBoxRV.layoutManager = layoutManager
         chattingBoxRV.adapter = chatAdapter
+    }
+
+    private fun handleStoreChatMessages() {
+        val gson = Gson()
+        val jsonChatRoomList = SharedPreferenceHelper.getString(this, getText(R.string.chatData).toString())
+        val storedChatRoomList = gson.fromJson<ArrayList<LocalStoredChatRoom>>(jsonChatRoomList, object : TypeToken<ArrayList<LocalStoredChatRoom>>() {}.type)
+        storedChatRoomList.forEach { localStoredChatRoom ->
+            if (localStoredChatRoom.station == station) {
+                localStoredChatRoom.unReadChatCount = 0
+                localStoredChatRoom.chatMessageList.forEach { chatData ->
+                    chattingList.add(chatData)
+                }
+            }
+        }
+        val jsonNewChatRoomSet = gson.toJson(storedChatRoomList)
+        SharedPreferenceHelper.setString(this, getText(R.string.chatData).toString(), jsonNewChatRoomSet)
     }
 
     // 파이어베이스 서비스에서 브로드캐스트하는 채팅 메시지를 받는다.
@@ -107,6 +127,7 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
                             val chatData = ChatData(senderId, senderName, message, messageTime)
                             chattingList.add(chatData)
                             chatAdapter.notifyDataSetChanged()
+                            chattingBoxRV.scrollToPosition(chatAdapter.itemCount - 1)
                         }
                     }
                 }

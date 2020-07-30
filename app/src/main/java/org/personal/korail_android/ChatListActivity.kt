@@ -1,8 +1,6 @@
 package org.personal.korail_android
 
-import android.content.ComponentName
-import android.content.Intent
-import android.content.ServiceConnection
+import android.content.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
@@ -11,8 +9,11 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_chat_list.*
 import org.json.JSONObject
 import org.personal.korail_android.adapter.ChatRoomAdapter
@@ -21,7 +22,9 @@ import org.personal.korail_android.dialog.ChooseChatNameDialog
 import org.personal.korail_android.interfaces.HTTPConnectionListener
 import org.personal.korail_android.interfaces.ItemClickListener
 import org.personal.korail_android.item.ChatRoomItem
+import org.personal.korail_android.item.LocalStoredChatRoom
 import org.personal.korail_android.service.HTTPConnectionService
+import org.personal.korail_android.service.MyFirebaseMessagingService
 import org.personal.korail_android.utils.SharedPreferenceHelper
 
 class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickListener, TextWatcher, ChooseChatNameDialog.DialogListener,
@@ -37,26 +40,39 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
     private var changedChatRoomList = ArrayList<ChatRoomItem>()
     private val chatRoomAdapter by lazy { ChatRoomAdapter(this, chatRoomList, this) }
 
+    // --- FCM 으로 받은 채팅 메시지를 액티비티에서 수신하는 로컬 리시버 ---
+    private lateinit var broadcastReceiver: BroadcastReceiver
+    private val intentFilter by lazy { IntentFilter().apply { addAction(MyFirebaseMessagingService.ACTION_RECEIVE_CHAT) } }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
         setListener()
-        buildRecyclerView()
+        defineReceiver()
+//        SharedPreferenceHelper.setString(this, getText(R.string.chatData).toString(), null)
     }
 
     override fun onStart() {
         super.onStart()
+        chatRoomList.clear()
+        buildRecyclerView()
         startBoundService()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        unbindService(connection)
     }
 
     override fun onResume() {
         super.onResume()
         bottomNavigationBV.selectedItemId = R.id.chat
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unbindService(connection)
     }
 
     private fun setListener() {
@@ -67,15 +83,57 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
 
     private fun buildRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
+        val gson = Gson()
+        val jsonChatRoomList = SharedPreferenceHelper.getString(this, getText(R.string.chatData).toString())
+        val storedChatRoomList = gson.fromJson<ArrayList<LocalStoredChatRoom>>(jsonChatRoomList, object : TypeToken<ArrayList<LocalStoredChatRoom>>() {}.type)
+        val storedUnreadMessageHash = HashMap<String, Any?>()
+
+        if (storedChatRoomList != null) {
+            Log.i(TAG, "buildRecyclerView: ${storedChatRoomList.count()}")
+            storedChatRoomList.forEach {
+                val station = it.station
+                storedUnreadMessageHash[station] = it.unReadChatCount
+            }
+        }
+
         // 채팅 방 더미 데이터 넣는 구간
-        val dummyStationTitles = arrayOf("사당", "노원", "이수", "사당", "선릉", "동대문역사문화공원역")
+        val dummyStationTitles = arrayOf("사당역", "노원역", "이수역", "선릉역", "동대문역사문화공원역")
         dummyStationTitles.forEach {
-            val chatRoomItem = ChatRoomItem(it, 0)
+
+            val chatRoomItem: ChatRoomItem = if (storedUnreadMessageHash[it] == null) {
+                ChatRoomItem(it, 0)
+
+            } else {
+                ChatRoomItem(it, storedUnreadMessageHash[it] as Int)
+            }
             chatRoomList.add(chatRoomItem)
         }
         stationListRV.setHasFixedSize(true)
         stationListRV.layoutManager = layoutManager
         stationListRV.adapter = chatRoomAdapter
+    }
+
+    // 파이어베이스 서비스에서 브로드캐스트하는 채팅 메시지를 받는다.
+    private fun defineReceiver() {
+
+        broadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                Log.i(TAG, "working?")
+                when (intent?.action) {
+                    MyFirebaseMessagingService.ACTION_RECEIVE_CHAT -> {
+                        Log.i(TAG, "onReceive: yes")
+                        val senderStation = intent.getStringExtra("station")
+                        chatRoomList.forEach {
+                            if (it.title == senderStation) {
+                                Log.i(TAG, "onReceive: same station")
+                                it.unReadMessage += 1
+                                chatRoomAdapter.notifyDataSetChanged()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // 현재 액티비티와 HTTPConnectionService(Bound Service)를 연결하는 메소드
@@ -87,23 +145,23 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
     // -------------------------- 네비게이션 리스너 관련 이벤트 --------------------------
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home ->   {
-                val toHome  = Intent(this, HomeActivity::class.java)
+            R.id.home -> {
+                val toHome = Intent(this, HomeActivity::class.java)
                 startActivity(toHome)
             }
 
             R.id.event -> {
-                val toEvent  = Intent(this, EventListActivity::class.java)
+                val toEvent = Intent(this, EventListActivity::class.java)
                 startActivity(toEvent)
             }
 
             R.id.culturalFacilities -> {
-                val toCulturalFacilities  = Intent(this, CulturalFacilitiesListActivity::class.java)
+                val toCulturalFacilities = Intent(this, CulturalFacilitiesListActivity::class.java)
                 startActivity(toCulturalFacilities)
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }
