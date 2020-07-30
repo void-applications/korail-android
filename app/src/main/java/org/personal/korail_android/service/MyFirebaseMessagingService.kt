@@ -7,10 +7,12 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import org.json.JSONObject
 import org.personal.korail_android.R
 import org.personal.korail_android.item.ChatData
 import org.personal.korail_android.item.LocalStoredChatRoom
 import org.personal.korail_android.utils.SharedPreferenceHelper
+import org.personal.korail_android.utils.serverConnection.HTTPRequest
 import java.lang.Integer.parseInt
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -33,6 +35,23 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         SharedPreferenceHelper.setString(this, getText(R.string.firebaseMessagingToken).toString(), token)
         // FCM 토큰 값 업데이트해야 한다는 것을 확인하는 변수 저장
         SharedPreferenceHelper.setBoolean(this, getText(R.string.isTokenUpdated).toString(), false)
+        uploadTokenToServer(token)
+    }
+
+    private fun uploadTokenToServer(token:String) {
+        val postData = JSONObject().apply {
+            put("what", "uploadToken")
+            put("token", token)
+        }
+
+        val httpRequest = HTTPRequest("korail-chat")
+        val tokenTableId = parseInt(httpRequest.postMethodToServer(postData.toString()))
+
+
+        // 데이터 베이스에 저장된 테이블 id 저장하기 -> 각 디바이스의 id 값으로 사용 (채팅 시 본인 채팅과 상대방 채팅 구분하기 위해)
+        SharedPreferenceHelper.setInt(this, getText(R.string.tokenId).toString(), tokenTableId)
+        // FCM 토큰 값 업데이트 됬다는 것을 확인하는 변수 저장
+        SharedPreferenceHelper.setBoolean(this, getText(R.string.isTokenUpdated).toString(), true)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -65,8 +84,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.i(TAG, "handleMessage: $chatMessage")
         storeChatMessage(station!!, chatMessage)
     }
-
-//    station=사당역, sender_id=9, senderName=ff, message=sdf, message_time=오전 12:29
 
     private fun storeChatMessage(station: String, chatMessage: ChatData) {
         val gson = Gson()

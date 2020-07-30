@@ -65,6 +65,7 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     private fun setListener() {
         clearSearchInputIB.setOnClickListener(this)
         searchStationET.addTextChangedListener(this)
+        clearSearchInputIB.setOnClickListener(this)
         bottomNavigation.setOnNavigationItemSelectedListener(this) // 바텀 네비게이션 리스너
     }
 
@@ -101,14 +102,19 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
             R.id.lostAndFound -> {
                 val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
-            } 
+            }
         }
         overridePendingTransition(0, 0)
         return true
     }
 
     // -------------------------- 버튼 클릭 리스너 관련 이벤트 --------------------------
-    override fun onClick(p0: View?) {
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.clearSearchInputIB -> {
+                searchStationET.text = null
+            }
+        }
     }
 
     // -------------------------- 리사이클러 뷰 아이템 클릭 리스너 관련 이벤트 --------------------------
@@ -117,11 +123,15 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
         val eventItem = getSelectedStation(itemPosition)
         if (eventItem.progressState == "공연 예정") {
             Log.i(TAG, "onItemClick: 공연 예정")
-        } else {
             val toEventDetail = Intent(this, EventDetailActivity::class.java).apply {
                 putExtra("eventItem", eventItem)
             }
             startActivity(toEventDetail)
+        } else {
+            val toEventDetailWithReview = Intent(this, EventDetailWithReviewActivity::class.java).apply {
+                putExtra("eventItem", eventItem)
+            }
+            startActivity(toEventDetailWithReview)
         }
     }
 
