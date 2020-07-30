@@ -41,24 +41,44 @@
 
     <EditText
         android:id="@+id/searchStation"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="76dp"
-        android:hint="예) 대전"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/shape_search_box"
+        android:backgroundTint="@color/searchBox"
+        android:hint="역 검색"
+        android:paddingStart="50dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="50dp"
+        android:paddingBottom="10dp"
+        android:lines="1"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <ImageView
-        android:id="@+id/searchIV"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="76dp"
-        android:src="@drawable/search"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/searchStation"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <ImageButton
+        android:id="@+id/searchIconIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparency"
+        android:src="@drawable/ic_baseline_search_24"
+        app:layout_constraintBottom_toBottomOf="@id/searchStation"
+        app:layout_constraintLeft_toLeftOf="@+id/searchStation"
+        app:layout_constraintTop_toTopOf="@id/searchStation" />
+
+    <ImageButton
+        android:id="@+id/clearSearchInputIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparency"
+        android:src="@drawable/ic_baseline_clear_24"
+        app:layout_constraintBottom_toBottomOf="@id/searchStation"
+        app:layout_constraintRight_toRightOf="@id/searchStation"
+        app:layout_constraintTop_toTopOf="@id/searchStation" />
+
+
 
     <!--    바텀 네비게이션-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -71,11 +91,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_navigation" />
+
     <ImageView
         android:id="@+id/questionIV"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="88dp"
         android:src="@drawable/question"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/questionTV"
@@ -85,13 +106,12 @@
         android:id="@+id/questionTV"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="76dp"
+        android:gravity="center"
         android:text="유실물 처리 절차가 궁금하신가요?"
         app:layout_constraintLeft_toRightOf="@+id/questionIV"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchIV"
-        android:gravity="left|center"/>
-
+        app:layout_constraintTop_toBottomOf="@id/searchStation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
