@@ -16,7 +16,6 @@
 
         <activity android:name=".EventWriteReviewActivity"/>
         <activity android:name=".LostAndFoundStepMain"/>
-        <activity android:name=".SplashActivity"/>
         <activity android:name=".WriteReviewActivity"/>
 
         <meta-data
@@ -34,7 +33,7 @@
         <activity android:name=".CulturalFacilitiesListActivity" />
         <activity android:name=".ScheduleActivity" />
         <activity android:name=".ChattingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
