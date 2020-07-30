@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home.*
+import org.personal.korail_android.item.EventItem
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,20 +33,20 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.event -> {
-                val toEvent  = Intent(this, EventListActivity::class.java)
+                val toEvent = Intent(this, EventListActivity::class.java)
                 startActivity(toEvent)
             }
-            R.id.chat ->   {
-                val toChat  = Intent(this, ChatListActivity::class.java)
+            R.id.chat -> {
+                val toChat = Intent(this, ChatListActivity::class.java)
                 startActivity(toChat)
             }
             R.id.culturalFacilities -> {
-                val toCulturalFacilities  = Intent(this, CulturalFacilitiesListActivity::class.java)
+                val toCulturalFacilities = Intent(this, CulturalFacilitiesListActivity::class.java)
                 startActivity(toCulturalFacilities)
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound  = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
             }
         }
@@ -55,7 +56,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
 
     //------------------ 클릭 시 이벤트 관리하는 메소드 모음 ------------------
     override fun onClick(v: View?) {
-        when(v?.id) {
+        when (v?.id) {
             R.id.chatIB -> {
                 val toChatList = Intent(this, ChatListActivity::class.java)
                 startActivity(toChatList)
@@ -63,18 +64,17 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
 
             R.id.culturalFacilitiesIB -> {
                 val toEventList = Intent(this, CulturalFacilitiesDetailActivity::class.java)
-                toEventList.putExtra("id","19");
+                toEventList.putExtra("id", "19");
                 startActivity(toEventList)
             }
 
             R.id.eventIB -> {
-                val toEvent = Intent(this, EventListActivity::class.java)
+                val eventItem = EventItem(0, R.drawable.ic_baseline_train_24, "푸른하늘", "통기타라이브", "대전역","2020-08-01 19:00", "2020-08-01 21:00", "진행 예정")
+                val toEvent = Intent(this, EventDetailActivity::class.java).apply {
+                    putExtra("eventItem", eventItem)
+                }
                 startActivity(toEvent)
             }
-            /*R.id.lostAndFoundIB -> {
-                val toLostAndFound = Intent(this, lostAndFoundSearch::class.java)
-                startActivity(toLostAndFound)
-            }*/
         }
     }
 }
