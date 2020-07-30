@@ -12,6 +12,13 @@ import android.widget.RatingBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_event_detail.*
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.*
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.contentTV
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.endTimeTV
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.locationIV
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.performerTV
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.startTimeTV
+import kotlinx.android.synthetic.main.activity_event_detail_with_review.stationNameTV
 import org.personal.korail_android.adapter.EventReviewAdapter
 import org.personal.korail_android.background.HTTPConnectionThread.Companion.REQUEST_EVENT_REVIEW_LIST
 import org.personal.korail_android.interfaces.HTTPConnectionListener
@@ -19,7 +26,7 @@ import org.personal.korail_android.item.EventItem
 import org.personal.korail_android.item.EventReviewItem
 import org.personal.korail_android.service.HTTPConnectionService
 
-class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingBar.OnRatingBarChangeListener {
+class EventDetailWithReviewActivity : AppCompatActivity(), HTTPConnectionListener, RatingBar.OnRatingBarChangeListener {
 
     private val TAG = javaClass.name
     private val serverPage = "korail-event-detail"
@@ -33,7 +40,7 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_event_detail)
+        setContentView(R.layout.activity_event_detail_with_review)
         setInitView()
         setListener()
         buildRecyclerView()
@@ -41,6 +48,7 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
     }
 
     private fun setInitView() {
+        locationIV.setImageResource(eventItem!!.locationImage)
         stationNameTV.text = eventItem!!.location
         performerTV.text = eventItem!!.performer
         contentTV.text = eventItem!!.content
@@ -53,6 +61,7 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
         super.onStart()
         eventReviewList.clear()
         startBoundService()
+        reviewRB.rating = 0f
     }
 
     override fun onStop() {
@@ -99,7 +108,7 @@ class EventDetailActivity : AppCompatActivity(), HTTPConnectionListener, RatingB
             val binder: HTTPConnectionService.LocalBinder =
                 service as HTTPConnectionService.LocalBinder
             httpConnectionService = binder.getService()!!
-            httpConnectionService.setOnHttpRespondListener(this@EventDetailActivity)
+            httpConnectionService.setOnHttpRespondListener(this@EventDetailWithReviewActivity)
             val handler = Handler(Looper.getMainLooper())
             httpConnectionService.serverGetRequest(makeRequestUrl(), REQUEST_EVENT_REVIEW_LIST, GET_EVENT_REVIEW_LIST)
 

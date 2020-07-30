@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.personal.korail_android.item.EventItem
 import org.personal.korail_android.item.EventReviewItem
+import org.personal.korail_android.item.LocalStoredChatRoom
 
 class HTTPRequest(serverPage: String) : HTTPOutPut {
 

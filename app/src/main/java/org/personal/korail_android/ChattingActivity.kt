@@ -95,16 +95,19 @@ class ChattingActivity : AppCompatActivity(), View.OnClickListener, HTTPConnecti
         val gson = Gson()
         val jsonChatRoomList = SharedPreferenceHelper.getString(this, getText(R.string.chatData).toString())
         val storedChatRoomList = gson.fromJson<ArrayList<LocalStoredChatRoom>>(jsonChatRoomList, object : TypeToken<ArrayList<LocalStoredChatRoom>>() {}.type)
-        storedChatRoomList.forEach { localStoredChatRoom ->
-            if (localStoredChatRoom.station == station) {
-                localStoredChatRoom.unReadChatCount = 0
-                localStoredChatRoom.chatMessageList.forEach { chatData ->
-                    chattingList.add(chatData)
+
+        if (storedChatRoomList != null) {
+            storedChatRoomList.forEach { localStoredChatRoom ->
+                if (localStoredChatRoom.station == station) {
+                    localStoredChatRoom.unReadChatCount = 0
+                    localStoredChatRoom.chatMessageList.forEach { chatData ->
+                        chattingList.add(chatData)
+                    }
                 }
             }
+            val jsonNewChatRoomSet = gson.toJson(storedChatRoomList)
+            SharedPreferenceHelper.setString(this, getText(R.string.chatData).toString(), jsonNewChatRoomSet)
         }
-        val jsonNewChatRoomSet = gson.toJson(storedChatRoomList)
-        SharedPreferenceHelper.setString(this, getText(R.string.chatData).toString(), jsonNewChatRoomSet)
     }
 
     // 파이어베이스 서비스에서 브로드캐스트하는 채팅 메시지를 받는다.
