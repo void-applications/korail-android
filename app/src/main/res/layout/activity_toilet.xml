@@ -80,7 +80,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_person_24"
+                    android:background="@drawable/ic_baseline_compare_arrows_24"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,7 +120,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/hours_of_use"
+                    android:background="@drawable/ic_baseline_wc_24"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/toiletLocationIV" />
 
