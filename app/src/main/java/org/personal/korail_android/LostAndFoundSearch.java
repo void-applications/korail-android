@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -105,9 +104,9 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
                 startActivity(toChat);
                 break;
 
-            case R.id.culturalFacilities:
-                Intent toCulturalFacilities = new Intent(this, CulturalFacilitiesListActivity.class);
-                startActivity(toCulturalFacilities);
+            case R.id.facilities:
+                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
+                startActivity(toFacilities);
                 break;
         }
         overridePendingTransition(0, 0);
