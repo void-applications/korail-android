@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ToiletActivity">
+
     <TextView
         android:id="@+id/HeaderTV"
         android:layout_width="match_parent"
@@ -59,82 +60,19 @@
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:src="@drawable/ic_baseline_train_24"
-                app:layout_constraintBottom_toTopOf="@id/info"
+                app:layout_constraintBottom_toTopOf="@id/infoRecyclerview"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/stationNameTV" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="#e5e5e5"
-                android:padding="5dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/locationIV">
-
-
-                <ImageView
-                    android:id="@+id/insideAndOutIV"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_compare_arrows_24"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/insideAndOutTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="게이트 내외"
-                    app:layout_constraintBottom_toBottomOf="@id/insideAndOutIV"
-                    app:layout_constraintLeft_toRightOf="@id/insideAndOutIV"
-                    app:layout_constraintTop_toTopOf="@id/insideAndOutIV" />
-
-
-
-                <ImageView
-                    android:id="@+id/toiletLocationIV"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/hours_of_use"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/insideAndOutTV" />
-
-                <TextView
-                    android:id="@+id/toiletLocationTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="위치"
-                    app:layout_constraintBottom_toBottomOf="@id/toiletLocationIV"
-                    app:layout_constraintLeft_toRightOf="@id/toiletLocationIV"
-                    app:layout_constraintTop_toTopOf="@id/toiletLocationIV" />
-
-                <ImageView
-                    android:id="@+id/manWomenIV"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_wc_24"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toiletLocationIV" />
-
-                <TextView
-                    android:id="@+id/manWomenTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="남녀구분코드"
-                    app:layout_constraintBottom_toBottomOf="@id/manWomenIV"
-                    app:layout_constraintLeft_toRightOf="@id/manWomenIV"
-                    app:layout_constraintTop_toTopOf="@id/manWomenIV" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/infoRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@id/locationIV"
+                tools:listitem="@layout/item_toilet" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
