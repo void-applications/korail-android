@@ -60,7 +60,7 @@ public class MoreInfoActivity extends AppCompatActivity implements BottomNavigat
         restroomIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),ToiletActivity.class);
+                Intent intent=new Intent(getApplicationContext(),toiletSearchActivity.class);
                 startActivity(intent);
             }
         });

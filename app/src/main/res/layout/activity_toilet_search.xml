@@ -74,7 +74,7 @@
         android:backgroundTint="@color/transparency"
         android:src="@drawable/ic_baseline_search_24"
         app:layout_constraintBottom_toBottomOf="@id/toiletStationET"
-        app:layout_constraintLeft_toLeftOf="@+id/searchStationET"
+        app:layout_constraintLeft_toLeftOf="@+id/toiletStationET"
         app:layout_constraintTop_toTopOf="@id/toiletStationET" />
 
     <ImageButton
@@ -87,6 +87,14 @@
         app:layout_constraintRight_toRightOf="@id/toiletStationET"
         app:layout_constraintTop_toTopOf="@id/toiletStationET" />
 
+    <TextView
+        android:id="@+id/resultCountTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="oo 역 검색결과 총 o건"
+        app:layout_constraintTop_toBottomOf="@id/toiletStationET"
+        android:visibility="gone"
+        android:padding="15dp" />
 
 
     <!--    바텀 네비게이션-->
