@@ -27,7 +27,7 @@ import org.personal.korail_android.item.FacilitiesItem;
 
 import java.util.ArrayList;
 
-public class CulturalFacilitiesListActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class CulturalFacilitiesListActivity extends AppCompatActivity  {
 
     ArrayList<FacilitiesItem> facilitiesItemArrayList, changedFacilityList;
     FacilitiesAdapter facilitiesAdapter;
@@ -37,7 +37,6 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
     Handler handler;
     TextView resultTV;
     EditText searchET;
-    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,6 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
         recyclerView = findViewById(R.id.facilitiesRecyclerview);
         resultTV = findViewById(R.id.resultCountTV);
         searchET = findViewById(R.id.searchStationET);
-        bottomNavigation = findViewById(R.id.bottomNavigation);
-        bottomNavigation.setOnNavigationItemSelectedListener(this);
 
         RecyclerDecoration recyclerDecoration = new RecyclerDecoration(50);
         recyclerView.addItemDecoration(recyclerDecoration);
@@ -107,7 +104,6 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
     }
 
     public void searchFilter(String searchText) {
@@ -156,33 +152,5 @@ public class CulturalFacilitiesListActivity extends AppCompatActivity implements
                 }
             }
         });
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                Intent toHome = new Intent(this, HomeActivity.class);
-                startActivity(toHome);
-                break;
-
-            case R.id.event:
-                Intent toEvent = new Intent(this, EventListActivity.class);
-                startActivity(toEvent);
-                break;
-
-            case R.id.chat:
-                Intent toChat = new Intent(this, ChatListActivity.class);
-                startActivity(toChat);
-                break;
-
-            case R.id.facilities:
-                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
-                startActivity(toFacilities);
-                break;
-        }
-        overridePendingTransition(0, 0);
-        return true;
     }
 }

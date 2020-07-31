@@ -94,9 +94,9 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
                 startActivity(toHome);
                 break;
 
-            case R.id.event:
-                Intent toEvent = new Intent(this, EventListActivity.class);
-                startActivity(toEvent);
+            case R.id.hiddenRestArea:
+                Intent toHiddenRestArea = new Intent(this, HiddenRestAreaListActivity.class);
+                startActivity(toHiddenRestArea);
                 break;
 
             case R.id.chat:
