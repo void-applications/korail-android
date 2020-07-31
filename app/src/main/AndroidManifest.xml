@@ -17,10 +17,11 @@
         <activity android:name=".toiletSearchActivity"></activity>
         <activity android:name=".ServiceCenterSearchActivity" />
 
-        <activity android:name=".HiddenRestAreaListActivity"></activity>
+        <activity android:name=".MoreInfoActivity"></activity>
 
         <activity android:name=".NursingRoomDetailActivity" />
-        <activity android:name=".HiddenAreaDetailActivity"></activity>
+        <activity android:name=".HiddenAreaDetailActivity" />
+        <activity android:name=".NursingRoomListActivity" />
         <activity android:name=".HiddenRestAreaListActivity" />
         <activity android:name=".FacilitiesActivity" />
         <activity android:name=".ToiletActivity" />
@@ -47,7 +48,7 @@
         <activity android:name=".CulturalFacilitiesListActivity" />
         <activity android:name=".ScheduleActivity" />
         <activity android:name=".ChattingActivity" />
-        <activity android:name=".NursingRoomListActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
