@@ -1,6 +1,7 @@
 package org.personal.korail_android
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -36,25 +37,29 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.hiddenRestArea -> {
-                val toHiddenRestArea = Intent(this, HiddenRestAreaListActivity::class.java)
+                val toHiddenRestArea = Intent(this, HiddenRestAreaListActivity::class.java).apply {
+                    addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toHiddenRestArea)
-                finish()
             }
             R.id.chat -> {
-                val toChat = Intent(this, ChatListActivity::class.java)
+                val toChat = Intent(this, ChatListActivity::class.java).apply {
+                    addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toChat)
-                finish()
             }
             R.id.lostAndFound -> {
-                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java).apply {
+                    addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toLostAndFound)
-                finish()
             }
 
             R.id.facilities -> {
-                val toFacilities = Intent(this, MoreInfoActivity::class.java)
+                val toFacilities = Intent(this, MoreInfoActivity::class.java).apply {
+                    addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toFacilities)
-                finish()
             }
         }
         overridePendingTransition(0, 0)

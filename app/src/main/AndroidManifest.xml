@@ -14,13 +14,12 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".HiddenWriteReviewActivity"></activity>
-        <activity android:name=".MoreInfoActivity" />
         <activity android:name=".toiletSearchActivity"></activity>
         <activity android:name=".ServiceCenterSearchActivity" />
         <activity android:name=".NursingRoomDetailActivity" />
         <activity android:name=".HiddenAreaDetailActivity" />
         <activity android:name=".NursingRoomListActivity" />
-        <activity android:name=".HiddenRestAreaListActivity" />
+
         <activity android:name=".FacilitiesActivity" />
         <activity android:name=".ToiletActivity" />
         <activity android:name=".ServiceCenterActivity" />
@@ -36,10 +35,19 @@
             android:value="AIzaSyALQloDgddqjwIowz992BWzVc1N6Ji0a8g" /> <!-- <activity android:name=".ShowPlace"></activity> -->
         <activity android:name=".scheduleStaionSearch" />
         <activity android:name=".scheduleStationInfo" />
+        <!--    네비    -->
         <activity android:name=".LostAndFoundSearch" />
-        <activity android:name=".lostAndFoundCallNLocation" />
+        <!--    네비    -->
+        <activity android:name=".HiddenRestAreaListActivity" />
+        <!--    네비    -->
+        <activity android:name=".MoreInfoActivity" />
+        <!--    네비    -->
         <activity android:name=".ChatListActivity" />
+        <!--    네비    -->
         <activity android:name=".HomeActivity" />
+
+        <activity android:name=".lostAndFoundCallNLocation" />
+
         <activity android:name=".EventDetailWithReviewActivity" />
         <activity android:name=".EventListActivity" />
         <activity android:name=".CulturalFacilitiesDetailActivity" />

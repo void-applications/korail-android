@@ -124,22 +124,30 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.home -> {
-                val toHome = Intent(this, HomeActivity::class.java)
+                val toHome = Intent(this, HomeActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toHome)
             }
 
             R.id.hiddenRestArea -> {
-                val toHiddenRestArea = Intent(this, HiddenRestAreaListActivity::class.java)
+                val toHiddenRestArea = Intent(this, HiddenRestAreaListActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toHiddenRestArea)
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toLostAndFound)
             }
 
             R.id.facilities -> {
-                val toLostAndFound = Intent(this, MoreInfoActivity::class.java)
+                val toLostAndFound = Intent(this, MoreInfoActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toLostAndFound)
             }
         }

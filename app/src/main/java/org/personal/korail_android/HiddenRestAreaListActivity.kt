@@ -47,9 +47,9 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
     private fun buildRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
 
-        val workAndChargeZone = HiddenAreaItem(1, R.drawable.working_and_charging_zone_detail, "동대문역사문화공원역", "2", "STRESS FREE ZONE", "카테고리 : 충전 / 휴식", "content")
-        val platFormGallery = HiddenAreaItem(2, R.drawable.working_and_charging_zone_detail, "공덕역", "상세위치", "플랫폼 갤러리", "카테고리 : 갤러리", "content")
-        val popUpGallery = HiddenAreaItem(3, R.drawable.working_and_charging_zone_detail, "공덕역", "상세위치", "팝업 갤러리", "카테고리 : 갤러리", "content")
+        val workAndChargeZone = HiddenAreaItem(1, R.drawable.stress_free_zone, "동대문역사문화공원역", "상세 위치 : 2호선과 4호선 사이의 환승 통로", "STRESS FREE ZONE", "카테고리 : 충전 / 휴식", "환승 및 열차 대기 시 잠시 쉬거나 휴대폰을 충전하고 급한 업무를 처리할 수 있는 워크/힐링존")
+        val platFormGallery = HiddenAreaItem(2, R.drawable.platform_gallery, "공덕역", "상세 위치 : 역 스크린도어", "플랫폼 갤러리", "카테고리 : 갤러리", "VR과 같은 5G 콘텐츠 체험이 가능한 \'팝업 갤러리\'")
+        val popUpGallery = HiddenAreaItem(3, R.drawable.popup_gallery, "공덕역", "상세 위치 : 5호선과 6호선 사이의 환승 통로", "팝업 갤러리", "카테고리 : 갤러리", "LG유플러스의 5G 전용앱인 ‘U+AR’을 통해 살아 움직이는 그림 감상이 가능")
 
         hiddenAreaList.add(workAndChargeZone)
         hiddenAreaList.add(platFormGallery)
@@ -64,26 +64,30 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.home -> {
-                val toHome = Intent(this, HomeActivity::class.java)
+                val toHome = Intent(this, HomeActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toHome)
-                finish()
             }
             R.id.chat -> {
-                val toChat = Intent(this, ChatListActivity::class.java)
+                val toChat = Intent(this, ChatListActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toChat)
-                finish()
             }
 
             R.id.lostAndFound -> {
-                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
+                val toLostAndFound = Intent(this, LostAndFoundSearch::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toLostAndFound)
-                finish()
             }
 
             R.id.facilities -> {
-                val toLostAndFound = Intent(this, MoreInfoActivity::class.java)
+                val toLostAndFound = Intent(this, MoreInfoActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                }
                 startActivity(toLostAndFound)
-                finish()
             }
         }
         overridePendingTransition(0, 0)
