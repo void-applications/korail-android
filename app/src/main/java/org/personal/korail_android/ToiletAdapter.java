@@ -11,30 +11,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import org.personal.korail_android.adapter.FacilitiesAdapter;
 
 import java.util.ArrayList;
 
-public class ToiletAdapter extends RecyclerView.Adapter<ToiletAdapter.CustomViewHolder> {
+public class ToiletAdapter extends RecyclerView.Adapter<ToiletAdapter.ViewHolder> {
 
     ArrayList<ToiletItem> list;
-    private Context context;
-    String TAG = "화장실 어댑터";
-    ToiletItem toiletItem;
+    Activity activity;
 
-    public ToiletAdapter(Context context, ArrayList<ToiletItem> list){
-        this.context = context;
-        this.list = list;
+    String TAG = "화장실 어댑터";
+    ToiletAdapter.OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(ToiletAdapter.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
-    public class CustomViewHolder extends RecyclerView.ViewHolder {
+    public ToiletAdapter(ArrayList<ToiletItem> list, Activity activity){
+        this.list = list;
+        this.activity = activity;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView locationTV;
         private TextView insideOutTV;
         private TextView wcTV;
 
 
-        public CustomViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
-            locationTV = view.findViewById(R.id.locationTV);
+            locationTV = view.findViewById(R.id.toiletLocationTV);
             insideOutTV = view.findViewById(R.id.insideAndOutTV);
             wcTV = view.findViewById(R.id.manWomenTV);
 
@@ -43,25 +49,38 @@ public class ToiletAdapter extends RecyclerView.Adapter<ToiletAdapter.CustomView
 
     @NonNull
     @Override
-    public ToiletAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ToiletAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_toilet, viewGroup, false);
 
-        ToiletAdapter.CustomViewHolder viewHolder = new ToiletAdapter.CustomViewHolder(view);
+        ToiletAdapter.ViewHolder viewHolder = new ToiletAdapter.ViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ToiletAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ToiletAdapter.ViewHolder holder, int position) {
 
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                if(onItemClickListener!=null){
+                    onItemClickListener.OnItemClick(view,position);
+                }
+            }
+        });
         holder.locationTV.setText(list.get(position).getLocation());
         holder.insideOutTV.setText(list.get(position).getInsideOrOut());
-        holder.wcTV.setText(list.get(position).getInsideOrOut());
+        holder.wcTV.setText(list.get(position).getManWomen());
     }
 
     @Override
     public int getItemCount() {
         return (null != list ? list.size() : 0);
+    }
+
+    public interface OnItemClickListener {
+        void OnItemClick(View view,int position);
     }
 }

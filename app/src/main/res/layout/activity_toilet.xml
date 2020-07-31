@@ -55,23 +55,13 @@
                 app:layout_constraintLeft_toRightOf="@id/subwayIV"
                 app:layout_constraintTop_toTopOf="@id/subwayIV" />
 
-            <ImageView
-                android:id="@+id/locationIV"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:src="@drawable/ic_baseline_train_24"
-                app:layout_constraintBottom_toTopOf="@id/infoRecyclerview"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/stationNameTV" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/infoRecyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@id/locationIV"
+                app:layout_constraintTop_toBottomOf="@id/subwayIV"
                 tools:listitem="@layout/item_toilet" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
