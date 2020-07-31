@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.personal.korail_android.item.EventItem
 import org.personal.korail_android.item.EventReviewItem
+import org.personal.korail_android.item.HiddenReviewItem
 import org.personal.korail_android.item.LocalStoredChatRoom
 
 class HTTPRequest(serverPage: String) : HTTPOutPut {
@@ -44,6 +45,18 @@ class HTTPRequest(serverPage: String) : HTTPOutPut {
         Log.i(TAG, "getEventReviewList: $jsonString")
         return if (hTTPConnection.responseCode == 200) {
             gson.fromJson(jsonString, object : TypeToken<ArrayList<EventReviewItem>>() {}.type)
+        } else {
+            null
+        }
+    }
+
+    override fun getHiddenReviewList(): ArrayList<HiddenReviewItem>? {
+        val jsonString: String = hTTPConnection.getRequest()
+        val gson = Gson()
+
+        Log.i(TAG, "getEventReviewList: $jsonString")
+        return if (hTTPConnection.responseCode == 200) {
+            gson.fromJson(jsonString, object : TypeToken<ArrayList<HiddenReviewItem>>() {}.type)
         } else {
             null
         }

@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ServiceCenterActivity">
-
+    tools:context=".lostAndFoundCallNLocation">
+    <!--    Header-->
     <TextView
-        android:id="@+id/HeaderTV"
+        android:id="@+id/headerTV"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="200dp"
         android:background="@color/main"
         android:gravity="center|start"
         android:paddingStart="20dp"
@@ -17,109 +18,103 @@
         android:text="고객센터"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="120dp"
+        android:gravity="center"
+        android:text="고객 센터 정보 조회"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HeaderTV">
+        app:layout_constraintTop_toTopOf="@id/headerTV" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="100dp">
+    <ImageView
+        android:id="@+id/locationImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/location_iv"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/location"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
-            <ImageView
-                android:id="@+id/subwayIV"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/location"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/locationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="위치"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toRightOf="@+id/locationImage"
+        app:layout_constraintRight_toLeftOf="@+id/location"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
-            <TextView
-                android:id="@+id/stationNameTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="역이름"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@id/subwayIV"
-                app:layout_constraintLeft_toRightOf="@id/subwayIV"
-                app:layout_constraintTop_toTopOf="@id/subwayIV" />
-
-            <ImageView
-                android:id="@+id/locationIV"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:src="@drawable/ic_baseline_train_24"
-                app:layout_constraintBottom_toTopOf="@id/info"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/stationNameTV" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="#e5e5e5"
-                android:padding="5dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/locationIV">
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="서울 특별시 서초구 반포동 서래로 10"
+        app:layout_constraintLeft_toRightOf="@+id/locationTitle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="@id/locationTitle"
+        tools:layout_editor_absoluteX="49dp" />
 
 
-                <ImageView
-                    android:id="@+id/centerLocationIV"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_location_on_24"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/callTV"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:gravity="left|center"
+        android:text="02-101-2349"
+        android:textSize="17sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/linear"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/linear"
+        app:layout_constraintTop_toTopOf="@id/linear" />
 
-                <TextView
-                    android:id="@+id/centerLocationTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="위치"
-                    app:layout_constraintBottom_toBottomOf="@id/centerLocationIV"
-                    app:layout_constraintLeft_toRightOf="@id/centerLocationIV"
-                    app:layout_constraintTop_toTopOf="@id/centerLocationIV" />
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circleborder"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationImage">
 
+        <TextView
+            android:id="@+id/callGuideTV"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="전화걸기" />
 
+        <ImageView
+            android:id="@+id/call"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/call" />
+    </LinearLayout>
 
-
-                <ImageView
-                    android:id="@+id/numberIV"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ic_baseline_local_phone_24"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/centerLocationIV" />
-
-                <TextView
-                    android:id="@+id/numberTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="전화번호"
-                    app:layout_constraintBottom_toBottomOf="@id/numberIV"
-                    app:layout_constraintLeft_toRightOf="@id/numberIV"
-                    app:layout_constraintTop_toTopOf="@id/numberIV" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

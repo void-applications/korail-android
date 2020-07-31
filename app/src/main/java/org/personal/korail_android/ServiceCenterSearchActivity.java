@@ -39,6 +39,7 @@ public class ServiceCenterSearchActivity extends AppCompatActivity {
                 String stationName = stationET.getText().toString();
 
                 searchIntent = new Intent(getApplicationContext(), ServiceCenterActivity.class);
+                searchIntent.putExtra("stationName",stationName);
                 startActivity(searchIntent);
             }
         });
@@ -62,7 +63,7 @@ public class ServiceCenterSearchActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
+//        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
     }
 
 

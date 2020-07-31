@@ -49,7 +49,10 @@ public class ToiletActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.infoRecyclerview);
         bottomNavigation = findViewById(R.id.bottomNavigation);
+
         stationTV = findViewById(R.id.stationNameTV);
+
+
         RecyclerDecoration recyclerDecoration = new RecyclerDecoration(50);
         recyclerView.addItemDecoration(recyclerDecoration);
 
@@ -91,6 +94,7 @@ public class ToiletActivity extends AppCompatActivity {
         }).start();
 
     }
+
 
     public void display(String result) {
 
@@ -134,6 +138,7 @@ public class ToiletActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 
 }

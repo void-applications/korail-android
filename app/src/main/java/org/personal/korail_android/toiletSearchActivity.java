@@ -22,6 +22,7 @@ public class toiletSearchActivity extends AppCompatActivity {
     Intent searchIntent;
     String TAG = "화장실 찾기";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +59,7 @@ public class toiletSearchActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onResume() {

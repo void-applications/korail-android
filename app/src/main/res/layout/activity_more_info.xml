@@ -6,4 +6,133 @@
     android:layout_height="match_parent"
     tools:context=".MoreInfoActivity">
 
+    <TextView
+        android:id="@+id/headerTV"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main"
+        android:gravity="center|start"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="편의시설"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/eventIV"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_singer"
+        app:layout_constraintRight_toLeftOf="@id/facilityIV"
+        app:layout_constraintTop_toBottomOf="@id/headerTV"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/eventTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/eventIV"
+        app:layout_constraintLeft_toLeftOf="@id/eventIV"
+        app:layout_constraintRight_toRightOf="@id/eventIV"
+        android:text="지하철 공연"
+        android:layout_marginTop="20dp"
+        android:textSize="22sp"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/facilityIV"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_concert"
+        app:layout_constraintTop_toTopOf="@id/eventIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/eventIV"
+        app:layout_constraintLeft_toRightOf="@id/eventIV"/>
+
+    <TextView
+        android:id="@+id/facilityTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="문화 시설"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@id/facilityIV"
+        app:layout_constraintLeft_toLeftOf="@id/facilityIV"
+        app:layout_constraintTop_toBottomOf="@id/facilityIV"/>
+
+
+    <ImageView
+        android:id="@+id/restroomIV"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/restroom"
+        app:layout_constraintTop_toBottomOf="@id/eventTV"
+        app:layout_constraintRight_toLeftOf="@id/nursingRoomIV"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/restroomTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="화장실"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@id/restroomIV"
+        app:layout_constraintTop_toBottomOf="@id/restroomIV"
+        app:layout_constraintLeft_toLeftOf="@id/restroomIV"/>
+
+
+    <ImageView
+        android:id="@+id/nursingRoomIV"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/mother"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/restroomIV"
+        app:layout_constraintBottom_toBottomOf="@id/restroomIV"
+        app:layout_constraintLeft_toRightOf="@id/restroomIV"/>
+
+    <TextView
+        android:id="@+id/nursingRoomTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수유실"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@id/nursingRoomIV"
+        app:layout_constraintLeft_toLeftOf="@id/nursingRoomIV"
+        app:layout_constraintTop_toBottomOf="@id/nursingRoomIV"/>
+
+
+    <ImageView
+        android:id="@+id/serviceCenterIV"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="40dp"
+        android:background="@drawable/service_center"
+        app:layout_constraintTop_toBottomOf="@id/nursingRoomTV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/serviceCenterTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="고객센터"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@id/serviceCenterIV"
+        app:layout_constraintTop_toBottomOf="@id/serviceCenterIV"
+        app:layout_constraintLeft_toLeftOf="@id/serviceCenterIV"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
