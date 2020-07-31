@@ -54,7 +54,7 @@ public class ServiceCenterActivity extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttp okHttpThread = new OkHttp();
-                result=okHttpThread.getData("http://52.79.146.35/lost_found_center/?station_name="+stationName);
+                result=okHttpThread.getData("http://52.79.146.35/service_center/?station_name="+stationName);
                 Log.d(TAG, "결과값 확인 : "+ result);
                 centerName = result.split("#")[0];
                 Log.d(TAG, "센터 이름 확인 : "+ centerName);
