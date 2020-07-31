@@ -54,6 +54,8 @@ class HiddenAreaDetailActivity : AppCompatActivity(), HTTPConnectionListener, Ra
     }
 
     private fun setInitView() {
+        stationNameTV.text = hiddenAreaItem!!.location
+        representativeImageIV.setImageResource(hiddenAreaItem!!.imageResourceID)
         titleTV.text =hiddenAreaItem!!.title
         categoryTV.text = hiddenAreaItem!!.category
         detailLocationTV.text = hiddenAreaItem!!.detailLocation

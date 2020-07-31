@@ -9,6 +9,7 @@ import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home.*
 import org.personal.korail_android.item.EventItem
+import org.personal.korail_android.item.HiddenAreaItem
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -75,17 +76,20 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
             }
 
             R.id.culturalFacilitiesIB -> {
-                val toEventList = Intent(this, CulturalFacilitiesDetailActivity::class.java)
-                toEventList.putExtra("id", "19");
-                startActivity(toEventList)
-            }
-
-            R.id.eventIB -> {
                 val eventItem = EventItem(0, R.drawable.ic_baseline_train_24, "푸른하늘", "통기타라이브", "대전역","2020-08-01 19:00", "2020-08-01 21:00", "진행 예정")
                 val toEvent = Intent(this, EventDetailActivity::class.java).apply {
                     putExtra("eventItem", eventItem)
                 }
                 startActivity(toEvent)
+            }
+
+            R.id.eventIB -> {
+                val workAndChargeZone = HiddenAreaItem(1, R.drawable.working_and_charging_zone_detail, "동대문역사문화공원역", "2", "STRESS FREE ZONE", "카테고리 : 충전 / 휴식", "content")
+
+                val hiddenAreaItem = Intent(this, HiddenAreaDetailActivity::class.java).apply {
+                    putExtra("hiddenAreaItem",workAndChargeZone)
+                }
+                startActivity(hiddenAreaItem)
             }
         }
     }
