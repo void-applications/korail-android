@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+
 public class LostAndFoundSearch extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     EditText stationNameET;
@@ -91,26 +93,26 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
         switch (item.getItemId()) {
             case R.id.home:
                 Intent toHome = new Intent(this, HomeActivity.class);
+                toHome.addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(toHome);
-                finish();
                 break;
 
             case R.id.hiddenRestArea:
                 Intent toHiddenRestArea = new Intent(this, HiddenRestAreaListActivity.class);
+                toHiddenRestArea.addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(toHiddenRestArea);
-                finish();
                 break;
 
             case R.id.chat:
                 Intent toChat = new Intent(this, ChatListActivity.class);
+                toChat.addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(toChat);
-                finish();
                 break;
 
             case R.id.facilities:
                 Intent toFacilities = new Intent(this, MoreInfoActivity.class);
+                toFacilities.addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(toFacilities);
-                finish();
                 break;
         }
         overridePendingTransition(0, 0);
