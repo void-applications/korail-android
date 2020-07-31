@@ -14,15 +14,15 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/locationIV"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:id="@+id/representativeImageIV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@drawable/shape_search_box"
             android:backgroundTint="@color/transparency"
-            android:src="@drawable/ic_baseline_train_24"
+            android:src="@drawable/working_and_charging_zone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/locationTV" />
+            app:layout_constraintTop_toBottomOf="@id/locationIconIV" />
 
         <ImageView
             android:id="@+id/locationIconIV"
@@ -30,7 +30,7 @@
             android:layout_height="24dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/location"
-            app:layout_constraintBottom_toTopOf="@id/locationIV"
+            app:layout_constraintBottom_toTopOf="@id/representativeImageIV"
             app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -46,7 +46,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/locationIV"
+            app:layout_constraintBottom_toTopOf="@id/representativeImageIV"
             app:layout_constraintLeft_toRightOf="@id/locationIconIV"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,63 +55,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="행사명"
+            android:text="숨겨진 휴식공간 이름"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/contentTV"
-            app:layout_constraintLeft_toRightOf="@id/locationIV"
-            app:layout_constraintTop_toTopOf="@id/locationIV" />
+            app:layout_constraintBottom_toTopOf="@id/categoryTV"
+            app:layout_constraintLeft_toRightOf="@id/representativeImageIV"
+            app:layout_constraintTop_toTopOf="@id/representativeImageIV" />
 
         <TextView
-            android:id="@+id/contentTV"
+            android:id="@+id/categoryTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="공연 정보"
+            android:text="카테고리 ; 휴식"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/startTimeTV"
-            app:layout_constraintLeft_toRightOf="@id/locationIV"
+            app:layout_constraintBottom_toBottomOf="@id/representativeImageIV"
+            app:layout_constraintLeft_toRightOf="@id/representativeImageIV"
             app:layout_constraintTop_toBottomOf="@id/titleTV" />
 
-        <TextView
-            android:id="@+id/startTimeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="시작 시간 : "
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/endTimeTV"
-            app:layout_constraintLeft_toRightOf="@id/locationIV"
-            app:layout_constraintTop_toBottomOf="@+id/contentTV" />
-
-        <TextView
-            android:id="@+id/endTimeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="종료 시간 : "
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/locationIV"
-            app:layout_constraintTop_toBottomOf="@+id/startTimeTV" />
-
-        <TextView
-            android:id="@+id/progressStateTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="종료 OR 진행중"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
