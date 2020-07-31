@@ -58,7 +58,7 @@ public class MoreInfoActivity extends AppCompatActivity {
         serviceCenterIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),ServiceCenterActivity.class);
+                Intent intent=new Intent(getApplicationContext(),ServiceCenterSearchActivity.class);
                 startActivity(intent);
             }
         });

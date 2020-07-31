@@ -39,6 +39,7 @@ public class ServiceCenterSearchActivity extends AppCompatActivity {
                 String stationName = stationET.getText().toString();
 
                 searchIntent = new Intent(getApplicationContext(), ServiceCenterActivity.class);
+                searchIntent.putExtra("stationName",stationName);
                 startActivity(searchIntent);
             }
         });
