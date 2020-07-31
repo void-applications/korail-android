@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,25 +19,25 @@ public class toiletSearchActivity extends AppCompatActivity {
 
     EditText stationET;
     ImageView searchIV;
-    Handler handler;
     Intent searchIntent;
-    BottomNavigationView bottomNavigation;
+    String TAG = "화장실 찾기";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toilet_search);
-        stationET = findViewById(R.id.searchStationET);
+        stationET = findViewById(R.id.toiletStationET);
         searchIV = findViewById(R.id.searchIconIB);
-
-        handler = new Handler();
 
         searchIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String stationName = stationET.getText().toString();
+                Log.d(TAG, "엔터 클릭 실행" );
 
-                searchIntent = new Intent(getApplicationContext(), ServiceCenterActivity.class);
+                String stationName = stationET.getText().toString();
+                Log.d(TAG, "역 확인 : " + stationName);
+                searchIntent = new Intent(getApplicationContext(), ToiletActivity.class);
+                searchIntent.putExtra("stationName", stationName);
                 startActivity(searchIntent);
             }
         });
@@ -48,6 +49,7 @@ public class toiletSearchActivity extends AppCompatActivity {
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
 
                 if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    Log.d(TAG, "엔터 클릭 onkey이벤트" );
 
                     searchIV.performClick();
                     return true;
@@ -60,33 +62,7 @@ public class toiletSearchActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                Intent toHome = new Intent(this, HomeActivity.class);
-                startActivity(toHome);
-                break;
 
-            case R.id.event:
-                Intent toEvent = new Intent(this, EventListActivity.class);
-                startActivity(toEvent);
-                break;
-
-            case R.id.chat:
-                Intent toChat = new Intent(this, ChatListActivity.class);
-                startActivity(toChat);
-                break;
-
-            case R.id.facilities:
-                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
-                startActivity(toFacilities);
-                break;
-        }
-        overridePendingTransition(0, 0);
-        return true;
-    }
 }

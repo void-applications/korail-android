@@ -9,11 +9,13 @@ public class ToiletItem {
     String location;
     String manWomen;
     String insideOrOut;
+    String id;
 
-    public ToiletItem(String location, String manWomen, String insideOrOut) {
+    public ToiletItem(String location, String manWomen, String insideOrOut, String id) {
         this.location = location;
         this.manWomen = manWomen;
         this.insideOrOut = insideOrOut;
+        this.id = id;
     }
 
     public String getLocation() {
@@ -38,5 +40,13 @@ public class ToiletItem {
 
     public void setInsideOrOut(String insideOrOut) {
         this.insideOrOut = insideOrOut;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
