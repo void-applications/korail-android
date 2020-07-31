@@ -22,6 +22,7 @@ class HTTPConnectionThread(name: String?, private val httpConnectionListener: HT
         const val REQUEST_SIMPLE_GET_METHOD = 1
         const val REQUEST_EVENT_LIST = 2
         const val REQUEST_EVENT_REVIEW_LIST = 3
+        const val REQUEST_HIDDEN_REVIEW_LIST = 4
 
         // post 메소드 관련
         const val REQUEST_SIMPLE_POST_METHOD = 1
@@ -63,6 +64,10 @@ class HTTPConnectionThread(name: String?, private val httpConnectionListener: HT
 
                             REQUEST_EVENT_REVIEW_LIST -> {
                                 httpRespondData["respondData"] = httpRequest.getEventReviewList()
+                            }
+
+                            REQUEST_HIDDEN_REVIEW_LIST-> {
+                                httpRespondData["respondData"] = httpRequest.getHiddenReviewList()
                             }
                         }
                     }
