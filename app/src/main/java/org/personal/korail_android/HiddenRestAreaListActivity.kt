@@ -47,9 +47,9 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
     private fun buildRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
 
-        val workAndChargeZone = HiddenAreaItem(R.drawable.working_and_charging_zone_detail, "동대문역사문화공원역", "STRESS FREE ZONE", "카테고리 : 충전 / 휴식")
-        val platFormGallery = HiddenAreaItem(R.drawable.working_and_charging_zone_detail, "공덕역", "플랫폼 갤러리", "카테고리 : 갤러리")
-        val popUpGallery = HiddenAreaItem(R.drawable.working_and_charging_zone_detail, "공덕역", "팝업 갤러리", "카테고리 : 갤러리")
+        val workAndChargeZone = HiddenAreaItem(R.drawable.working_and_charging_zone_detail, "동대문역사문화공원역", "STRESS FREE ZONE", "상세위치","카테고리 : 충전 / 휴식", "content")
+        val platFormGallery = HiddenAreaItem(R.drawable.working_and_charging_zone_detail, "공덕역", "플랫폼 갤러리","상세위치", "카테고리 : 갤러리", "content")
+        val popUpGallery = HiddenAreaItem(R.drawable.working_and_charging_zone_detail, "공덕역", "팝업 갤러리", "상세위치","카테고리 : 갤러리", "content")
 
         hiddenAreaList.add(workAndChargeZone)
         hiddenAreaList.add(platFormGallery)
@@ -90,7 +90,7 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
     override fun onItemClick(view: View?, itemPosition: Int) {
         val hiddenAreaItem = getSelectedStation(itemPosition)
         val toHiddenAreaDetail = Intent(this, HiddenAreaDetailActivity::class.java).apply {
-            putExtra("title", hiddenAreaItem.title)
+            putExtra("title", hiddenAreaItem)
         }
         startActivity(toHiddenAreaDetail)
         Log.i(TAG, "onItemClick: ${hiddenAreaItem.title}")
@@ -123,9 +123,9 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
         changedHiddenAreaList.clear()
 
         hiddenAreaList.forEach {
-            if (it.location.toLowerCase().contains(text.toLowerCase())
-                || it.title.toLowerCase().contains(text.toLowerCase())
-                || it.category.toLowerCase().contains(text.toLowerCase())
+            if (it.location!!.toLowerCase().contains(text.toLowerCase())
+                || it.title!!.toLowerCase().contains(text.toLowerCase())
+                || it.category!!.toLowerCase().contains(text.toLowerCase())
             ) {
                 changedHiddenAreaList.add(it)
             }
