@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".NursingRoomDetailActivity" />
        <activity android:name=".ServiceCenterSearchActivity"></activity>
         <activity android:name=".HiddenAreaDetailActivity"></activity>
         <activity android:name=".HiddenRestAreaListActivity" />
@@ -42,7 +43,7 @@
         <activity android:name=".CulturalFacilitiesListActivity" />
         <activity android:name=".ScheduleActivity" />
         <activity android:name=".ChattingActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".NursingRoomListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
