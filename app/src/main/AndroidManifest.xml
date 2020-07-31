@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+       <activity android:name=".ServiceCenterSearchActivity"></activity>
         <activity android:name=".HiddenAreaDetailActivity"></activity>
         <activity android:name=".HiddenRestAreaListActivity" />
         <activity android:name=".NursingRoomActivity" />
