@@ -3,6 +3,7 @@ package org.personal.korail_android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -10,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_home.*
 import org.personal.korail_android.item.EventItem
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+
+    private val TAG = javaClass.name
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -40,14 +44,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
                 val toChat = Intent(this, ChatListActivity::class.java)
                 startActivity(toChat)
             }
-            R.id.culturalFacilities -> {
-                val toCulturalFacilities = Intent(this, CulturalFacilitiesListActivity::class.java)
-                startActivity(toCulturalFacilities)
-            }
-
             R.id.lostAndFound -> {
                 val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
+            }
+
+            R.id.facilities -> {
+                val toFacilities = Intent(this, FacilitiesActivity::class.java)
+                startActivity(toFacilities)
             }
         }
         overridePendingTransition(0, 0)
