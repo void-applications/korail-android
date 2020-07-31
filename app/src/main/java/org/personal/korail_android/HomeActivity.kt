@@ -3,7 +3,6 @@ package org.personal.korail_android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,9 +35,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
     //------------------ 네비게이션 바 클릭 시 이벤트 관리하는 메소드 모음 ------------------
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.event -> {
-                val toEvent = Intent(this, EventListActivity::class.java)
-                startActivity(toEvent)
+            R.id.hiddenRestArea -> {
+                val toHiddenRestArea = Intent(this, HiddenRestAreaListActivity::class.java)
+                startActivity(toHiddenRestArea)
             }
             R.id.chat -> {
                 val toChat = Intent(this, ChatListActivity::class.java)
