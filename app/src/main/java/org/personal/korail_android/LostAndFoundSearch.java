@@ -108,7 +108,7 @@ public class LostAndFoundSearch extends AppCompatActivity implements BottomNavig
                 break;
 
             case R.id.facilities:
-                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
+                Intent toFacilities = new Intent(this, MoreInfoActivity.class);
                 startActivity(toFacilities);
                 finish();
                 break;

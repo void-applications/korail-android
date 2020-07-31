@@ -139,7 +139,7 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
             }
 
             R.id.facilities -> {
-                val toLostAndFound = Intent(this, FacilitiesActivity::class.java)
+                val toLostAndFound = Intent(this, MoreInfoActivity::class.java)
                 startActivity(toLostAndFound)
             }
         }

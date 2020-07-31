@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
             }
 
             R.id.facilities -> {
-                val toFacilities = Intent(this, FacilitiesActivity::class.java)
+                val toFacilities = Intent(this, MoreInfoActivity::class.java)
                 startActivity(toFacilities)
                 finish()
             }

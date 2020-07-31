@@ -47,7 +47,7 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
     private fun buildRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
 
-        val workAndChargeZone = HiddenAreaItem(1, R.drawable.working_and_charging_zone_detail, "동대문역사문화공원역", "상세위치", "STRESS FREE ZONE", "카테고리 : 충전 / 휴식", "content")
+        val workAndChargeZone = HiddenAreaItem(1, R.drawable.working_and_charging_zone_detail, "동대문역사문화공원역", "2", "STRESS FREE ZONE", "카테고리 : 충전 / 휴식", "content")
         val platFormGallery = HiddenAreaItem(2, R.drawable.working_and_charging_zone_detail, "공덕역", "상세위치", "플랫폼 갤러리", "카테고리 : 갤러리", "content")
         val popUpGallery = HiddenAreaItem(3, R.drawable.working_and_charging_zone_detail, "공덕역", "상세위치", "팝업 갤러리", "카테고리 : 갤러리", "content")
 
@@ -81,7 +81,7 @@ class HiddenRestAreaListActivity : AppCompatActivity(), BottomNavigationView.OnN
             }
 
             R.id.facilities -> {
-                val toLostAndFound = Intent(this, FacilitiesActivity::class.java)
+                val toLostAndFound = Intent(this, MoreInfoActivity::class.java)
                 startActivity(toLostAndFound)
                 finish()
             }

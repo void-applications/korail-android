@@ -63,33 +63,33 @@ public class ServiceCenterSearchActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
+//        bottomNavigation.setSelectedItemId(R.id.lostAndFound);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                Intent toHome = new Intent(this, HomeActivity.class);
-                startActivity(toHome);
-                break;
-
-            case R.id.event:
-                Intent toEvent = new Intent(this, EventListActivity.class);
-                startActivity(toEvent);
-                break;
-
-            case R.id.chat:
-                Intent toChat = new Intent(this, ChatListActivity.class);
-                startActivity(toChat);
-                break;
-
-            case R.id.facilities:
-                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
-                startActivity(toFacilities);
-                break;
-        }
-        overridePendingTransition(0, 0);
-        return true;
-    }
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.home:
+//                Intent toHome = new Intent(this, HomeActivity.class);
+//                startActivity(toHome);
+//                break;
+//
+//            case R.id.hiddenRestArea:
+//                Intent toEvent = new Intent(this, EventListActivity.class);
+//                startActivity(toEvent);
+//                break;
+//
+//            case R.id.chat:
+//                Intent toChat = new Intent(this, ChatListActivity.class);
+//                startActivity(toChat);
+//                break;
+//
+//            case R.id.facilities:
+//                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
+//                startActivity(toFacilities);
+//                break;
+//        }
+//        overridePendingTransition(0, 0);
+//        return true;
+//    }
 }
