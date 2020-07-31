@@ -128,9 +128,9 @@ class ChatListActivity : AppCompatActivity(), View.OnClickListener, ItemClickLis
                 startActivity(toHome)
             }
 
-            R.id.event -> {
-                val toEvent = Intent(this, EventListActivity::class.java)
-                startActivity(toEvent)
+            R.id.hiddenRestArea -> {
+                val toHiddenRestArea = Intent(this, HiddenRestAreaListActivity::class.java)
+                startActivity(toHiddenRestArea)
             }
 
             R.id.lostAndFound -> {
