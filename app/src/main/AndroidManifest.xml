@@ -20,7 +20,6 @@
         <activity android:name=".HiddenRestAreaListActivity"></activity>
 
         <activity android:name=".NursingRoomDetailActivity" />
-       <activity android:name=".ServiceCenterSearchActivity"></activity>
         <activity android:name=".HiddenAreaDetailActivity"></activity>
         <activity android:name=".HiddenRestAreaListActivity" />
         <activity android:name=".FacilitiesActivity" />
