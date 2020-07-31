@@ -11,7 +11,6 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,9 +67,9 @@ class EventListActivity : AppCompatActivity(), ItemClickListener, View.OnClickLi
     private fun buildRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
 
-        stationEventRV.setHasFixedSize(true)
-        stationEventRV.layoutManager = layoutManager
-        stationEventRV.adapter = eventAdapter
+        hiddenAreaRV.setHasFixedSize(true)
+        hiddenAreaRV.layoutManager = layoutManager
+        hiddenAreaRV.adapter = eventAdapter
     }
 
     // 현재 액티비티와 HTTPConnectionService(Bound Service)를 연결하는 메소드
