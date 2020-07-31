@@ -20,7 +20,7 @@ import org.personal.korail_android.deco.RecyclerDecoration;
 
 import java.util.ArrayList;
 
-public class ToiletActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class ToiletActivity extends AppCompatActivity {
 
 
     ArrayList<ToiletItem> toiletItemArrayList;
@@ -38,7 +38,7 @@ public class ToiletActivity extends AppCompatActivity implements BottomNavigatio
 
         recyclerView = findViewById(R.id.infoRecyclerview);
         bottomNavigation = findViewById(R.id.bottomNavigation);
-        bottomNavigation.setOnNavigationItemSelectedListener(this);
+//        bottomNavigation.setOnNavigationItemSelectedListener(this);
 
         RecyclerDecoration recyclerDecoration = new RecyclerDecoration(50);
         recyclerView.addItemDecoration(recyclerDecoration);
@@ -67,31 +67,31 @@ public class ToiletActivity extends AppCompatActivity implements BottomNavigatio
 
 
     }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                Intent toHome = new Intent(this, HomeActivity.class);
-                startActivity(toHome);
-                break;
-
-            case R.id.event:
-                Intent toEvent = new Intent(this, EventListActivity.class);
-                startActivity(toEvent);
-                break;
-
-            case R.id.chat:
-                Intent toChat = new Intent(this, ChatListActivity.class);
-                startActivity(toChat);
-                break;
-
-            case R.id.facilities:
-                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
-                startActivity(toFacilities);
-                break;
-        }
-        overridePendingTransition(0, 0);
-        return true;
-    }
+//
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.home:
+//                Intent toHome = new Intent(this, HomeActivity.class);
+//                startActivity(toHome);
+//                break;
+//
+//            case R.id.event:
+//                Intent toEvent = new Intent(this, EventListActivity.class);
+//                startActivity(toEvent);
+//                break;
+//
+//            case R.id.chat:
+//                Intent toChat = new Intent(this, ChatListActivity.class);
+//                startActivity(toChat);
+//                break;
+//
+//            case R.id.facilities:
+//                Intent toFacilities = new Intent(this, FacilitiesActivity.class);
+//                startActivity(toFacilities);
+//                break;
+//        }
+//        overridePendingTransition(0, 0);
+//        return true;
+//    }
 }
