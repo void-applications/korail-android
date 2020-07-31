@@ -13,12 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".HiddenWriteReviewActivity"></activity>
+        <activity android:name=".MoreInfoActivity" />
         <activity android:name=".toiletSearchActivity"></activity>
         <activity android:name=".ServiceCenterSearchActivity" />
-
-        <activity android:name=".MoreInfoActivity"></activity>
-
         <activity android:name=".NursingRoomDetailActivity" />
         <activity android:name=".HiddenAreaDetailActivity" />
         <activity android:name=".NursingRoomListActivity" />

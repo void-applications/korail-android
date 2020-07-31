@@ -44,18 +44,22 @@ class FacilitiesActivity : AppCompatActivity(), BottomNavigationView.OnNavigatio
             R.id.home -> {
                 val toHome = Intent(this, HomeActivity::class.java)
                 startActivity(toHome)
+                finish()
             }
             R.id.hiddenRestArea -> {
-                val toEvent = Intent(this, EventListActivity::class.java)
+                val toEvent = Intent(this, HiddenRestAreaListActivity::class.java)
                 startActivity(toEvent)
+                finish()
             }
             R.id.chat -> {
                 val toChat = Intent(this, ChatListActivity::class.java)
                 startActivity(toChat)
+                finish()
             }
             R.id.lostAndFound -> {
                 val toLostAndFound = Intent(this, LostAndFoundSearch::class.java)
                 startActivity(toLostAndFound)
+                finish()
             }
         }
         overridePendingTransition(0, 0)

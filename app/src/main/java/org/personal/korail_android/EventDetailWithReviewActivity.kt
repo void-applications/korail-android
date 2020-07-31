@@ -54,7 +54,6 @@ class EventDetailWithReviewActivity : AppCompatActivity(), HTTPConnectionListene
         contentTV.text = eventItem!!.content
         startTimeTV.text = String.format("시작시간 : %s", eventItem!!.start_time)
         endTimeTV.text = String.format("종료시간 : %s", eventItem!!.end_time)
-        reviewRB.onRatingBarChangeListener = this
     }
 
     override fun onStart() {
@@ -70,7 +69,7 @@ class EventDetailWithReviewActivity : AppCompatActivity(), HTTPConnectionListene
     }
 
     private fun setListener() {
-
+        reviewRB.onRatingBarChangeListener = this
     }
 
     private fun buildRecyclerView() {
