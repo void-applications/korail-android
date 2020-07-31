@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ToiletItem"
+    android:background="#e5e5e5"
+    android:padding="5dp"
+    android:layout_margin="10dp"
+    >
+
+
+    <ImageView
+        android:id="@+id/insideAndOutIV"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/ic_baseline_compare_arrows_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/insideAndOutTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:text="게이트 내외"
+        app:layout_constraintBottom_toBottomOf="@id/insideAndOutIV"
+        app:layout_constraintLeft_toRightOf="@id/insideAndOutIV"
+        app:layout_constraintTop_toTopOf="@id/insideAndOutIV" />
+
+
+
+    <ImageView
+        android:id="@+id/toiletLocationIV"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/ic_baseline_location_on_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insideAndOutTV" />
+
+    <TextView
+        android:id="@+id/toiletLocationTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:text="위치"
+        app:layout_constraintBottom_toBottomOf="@id/toiletLocationIV"
+        app:layout_constraintLeft_toRightOf="@id/toiletLocationIV"
+        app:layout_constraintTop_toTopOf="@id/toiletLocationIV" />
+
+    <ImageView
+        android:id="@+id/manWomenIV"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/ic_baseline_wc_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toiletLocationIV" />
+
+    <TextView
+        android:id="@+id/manWomenTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:text="남녀구분코드"
+        app:layout_constraintBottom_toBottomOf="@id/manWomenIV"
+        app:layout_constraintLeft_toRightOf="@id/manWomenIV"
+        app:layout_constraintTop_toTopOf="@id/manWomenIV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
