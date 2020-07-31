@@ -12,6 +12,8 @@ public class ServiceCenterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_center);
 
 
+
+
         
 
     }
