@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/hiddenRestArea"
-        android:icon="@drawable/ic_singer"
+        android:icon="@drawable/ic_park"
         android:title="숨휴" />
 
     <item
@@ -18,11 +18,11 @@
 
     <item
         android:id="@+id/lostAndFound"
-        android:icon="@drawable/ic_concert"
+        android:icon="@drawable/ic_lost"
         android:title="유실물" />
 
     <item
         android:id="@+id/facilities"
-        android:icon="@drawable/ic_lost"
+        android:icon="@drawable/ic_baseline_add_24"
         android:title="편의시설" />
 </menu>
